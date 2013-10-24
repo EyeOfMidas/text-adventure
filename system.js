@@ -22,14 +22,15 @@ var System = function() {
 	};
 	this.parseInput = function() {
 		var commandData = this.read().split(' ');
-		var command = commandData.splice(0,1);
+		var command = commandData.splice(0, 1);
 		var playerPos = player.getPosition();
 		var room = world.getRoom(playerPos.zone, playerPos.room);
-		if(typeof(room[command]) == "function") {
+		if (typeof (room[command]) == "function") {
 			room[command](commandData);
 		} else {
-			if(!player.action(command, commandData)) {
-				this.println("I don't understand what '" + command + "' means.");
+			if (!player.action(command, commandData)) {
+				this
+						.println("I don't understand what '" + command + "' means.");
 			}
 		}
 		this.clearInput();
@@ -43,16 +44,15 @@ var System = function() {
 		}, false);
 
 		document.body.addEventListener("keyup", function(event) {
-			if(event.keyCode == 13) {
+			if (event.keyCode == 13) {
 				system.parseInput();
 			}
 		}, false);
-	
-	this.clear();
-	world.getRoom(0, 0).enter();
-};
+
+		this.clear();
+		world.getRoom(0, 0).enter();
+	};
 };
 
 var system = new System();
 system.init();
-

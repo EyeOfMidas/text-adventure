@@ -5,7 +5,10 @@ var Player = function() {
 		return false;
 	}
 	this.getPosition = function() {
-		return {zone:currentZone, room:currentRoom};
+		return {
+			zone : currentZone,
+			room : currentRoom
+		};
 	};
 	this.setPosition = function(zone, room) {
 		currentZone = zone;

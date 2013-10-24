@@ -1,11 +1,11 @@
 var garden = [];
-garden[0] = function(){
+garden[0] = function() {
 	var title = "A lush outdoor garden";
 	var description = "The warmth of the sun falls on the brick patio, radiating heat in the walled garden. The smell of vines and flowers permeate the air.";
 	var exitsDescription = "An old oak door opens into the house to the <strong>east</strong>.";
 	this.enter = function() {
 		system.title(title);
-		player.setPosition(1,0);
+		player.setPosition(1, 0);
 		system.println("<strong>" + title + "</strong>");
 		system.println(description);
 		system.println(exitsDescription);
