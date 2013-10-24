@@ -2,7 +2,7 @@ var garden = [];
 garden[0] = function() {
 	var title = "A lush outdoor garden";
 	var description = "The warmth of the sun falls on the brick patio, radiating heat in the walled garden. The smell of vines and flowers permeate the air.";
-	var exitsDescription = "An old oak door opens into the house to the <strong>east</strong>.";
+	var exitsDescription = "An old oak door opens into the house to the <strong>west</strong>.";
 	this.enter = function() {
 		system.title(title);
 		player.setPosition(1, 0);
@@ -11,12 +11,13 @@ garden[0] = function() {
 		system.println(exitsDescription);
 		system.println("");
 	};
-	this.east = function() {
+	this.west = function() {
 		system.println("You enter the house.");
 		system.println("");
 		system.println("You blink as your eyes adjust to the darkness.");
 		world.getRoom(0, 1).enter();
-	}
+	};
+	this.w = this.west;
 	this.look = function() {
 		system.println("You look around.");
 		system.println("");

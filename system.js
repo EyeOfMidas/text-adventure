@@ -50,7 +50,7 @@ var System = function() {
 		}, false);
 
 		this.clear();
-		world.getRoom(0, 0).enter();
+		world.getRoom(0, 2).enter();
 	};
 };
 

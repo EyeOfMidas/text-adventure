@@ -3,7 +3,7 @@ var Player = function() {
 	var currentRoom = 0;
 	this.action = function(command, commandData) {
 		return false;
-	}
+	};
 	this.getPosition = function() {
 		return {
 			zone : currentZone,
