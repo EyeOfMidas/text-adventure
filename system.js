@@ -2,6 +2,21 @@ var System = function() {
 	var outputDiv = window.document.getElementById("output");
 	var inputField = window.document.getElementById("input");
 	var submitButton = window.document.getElementById("submit");
+	this.init = function() {
+		submitButton.addEventListener('click', function() {
+			system.parseInput();
+		}, false);
+
+		document.body.addEventListener("keyup", function(event) {
+			if (event.keyCode == 13) {
+				system.parseInput();
+			}
+		}, false);
+
+		this.clear();
+		player.setPosition(0, 2); // this is the entry hall in oldhouse
+
+	};
 	this.read = function() {
 		return inputField.value;
 	};
@@ -32,8 +47,7 @@ var System = function() {
 				if (!player.actions(command, commandData)) {
 					if (!handleInventoryItems(command, commandData)) {
 						if (!system.actions(command, commandData)) {
-							system.println("I don't recognize '" + command
-									+ "'.");
+							system.println("I don't recognize '" + command + "'.");
 						}
 					}
 				}
@@ -62,20 +76,7 @@ var System = function() {
 	this.title = function(newTitle) {
 		document.title = newTitle;
 	};
-	this.init = function() {
-		submitButton.addEventListener('click', function() {
-			system.parseInput();
-		}, false);
 
-		document.body.addEventListener("keyup", function(event) {
-			if (event.keyCode == 13) {
-				system.parseInput();
-			}
-		}, false);
-
-		this.clear();
-		player.setPosition(1,0);
-	};
 	this.in_array = function(needle, haystack) {
 		for (var i = 0; i < haystack.length; i++) {
 			if (haystack[i] === needle) {
@@ -94,10 +95,8 @@ var System = function() {
 				//	  
 				// }
 				var playerPos = player.getPosition();
-				console.log("room data:", world.getRoom(playerPos.zone,
-						playerPos.room));
-				console.log("room items:", world.getItems(playerPos.zone,
-						playerPos.room));
+				console.log("room data:", world.getRoom(playerPos.zone, playerPos.room));
+				console.log("room items:", world.getItems(playerPos.zone, playerPos.room));
 				return true;
 			}
 
