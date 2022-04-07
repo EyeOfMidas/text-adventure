@@ -91,15 +91,6 @@ class System {
 		document.title = newTitle
 	}
 
-	in_array(needle, haystack) {
-		for (let i = 0; i < haystack.length; i++) {
-			if (haystack[i] === needle) {
-				return true
-			}
-		}
-		return false
-	}
-
 	actions(command, commandData) {
 		if (command == "debug") {
 			if (commandData[0] == "inventory") {

@@ -96,7 +96,7 @@ class BallroomItems_Pearl {
 	}
 
 	look(commandData) {
-		if (commandData.length > 0 && system.in_array(commandData[0], this.keys)) {
+		if (commandData.length > 0 && this.keys.includes(commanData[0])) {
 			system.println("It is a shiny, opalescent pearl.")
 			this.viewed = true
 			return true
@@ -113,7 +113,7 @@ class BallroomItems_Pearl {
 
 	l = this.look
 	take(commandData) {
-		if (system.in_array(commandData[0], this.keys)) {
+		if (this.keys.includes(commandData[0])) {
 			if (this.viewed) {
 				system.println("You take the pearl.")
 			} else {
@@ -137,7 +137,7 @@ class BallroomItems_Pearl {
 	}
 
 	drop(commandData) {
-		if (system.in_array(commandData[0], this.keys)) {
+		if (this.keys.includes(commandData[0])) {
 			if (this.viewed) {
 				system.println("You drop the pearl, letting it bounce across the floor to a stop.")
 			} else {

@@ -29,7 +29,7 @@ class GardenItems_Pansy {
 	}
 
 	look(commandData) {
-		if (commandData.length > 0 && system.in_array(commandData[0], this.keys)) {
+		if (commandData.length > 0 && this.keys.includes(commandData[0])) {
 			system.println("The small purple pansy looks limp.")
 			return true
 		}
@@ -40,7 +40,7 @@ class GardenItems_Pansy {
 	}
 	l = this.look
 	take(commandData) {
-		if (system.in_array(commandData[0], this.keys)) {
+		if (this.keys.includes(commandData[0])) {
 			system.println("You carefully put the flower in your pocket.")
 			system.println("")
 			var item = world.takeItem(commandData[0], player.getPosition())
@@ -56,7 +56,7 @@ class GardenItems_Pansy {
 	}
 
 	drop(commandData) {
-		if (system.in_array(commandData[0], this.keys)) {
+		if (this.keys.includes(commandData[0])) {
 			system.println("You let the flower fall to the floor.")
 			system.println("")
 			var item = player.takeItem(commandData[0])

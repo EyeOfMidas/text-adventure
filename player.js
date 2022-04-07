@@ -66,7 +66,7 @@ class Player {
 	}
 	takeItem(itemKey) {
 		for (var i = 0; i < this.playerInventory.length; i++) {
-			if (system.in_array(itemKey, this.playerInventory[i].keys)) {
+			if (this.playerInventory[i].keys.includes(itemKey)) {
 				var item = this.playerInventory.splice(i, 1)
 				return item[0]
 			}
