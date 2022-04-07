@@ -7,7 +7,7 @@ class World {
 	addZone(zoneIndex, zoneData) {
 		this.roomObjs[zoneIndex] = []
 		this.items[zoneIndex] = []
-		for (var i = 0; i < zoneData.length; i++) {
+		for (let i = 0; i < zoneData.length; i++) {
 			this.roomObjs[zoneIndex][i] = new zoneData[i]()
 			this.items[zoneIndex][i] = []
 		}
@@ -18,15 +18,15 @@ class World {
 	}
 
 	addItems(zone, room, roomItems) {
-		for (var i = 0; i < roomItems.length; i++) {
-			var roomItem = new roomItems[i]()
+		for (let i = 0; i < roomItems.length; i++) {
+			let roomItem = new roomItems[i]()
 			this.items[zone][room].push(roomItem)
 		}
 	}
 
 	printItems(zone, room) {
-		var roomItems = this.items[zone][room]
-		for (var i = 0; i < roomItems.length; i++) {
+		let roomItems = this.items[zone][room]
+		for (let i = 0; i < roomItems.length; i++) {
 			roomItems[i].look()
 		}
 	}
@@ -36,10 +36,10 @@ class World {
 	}
 
 	takeItem(itemKey, pos) {
-		var roomItems = this.getItems(pos.zone, pos.room)
-		for (var i = 0; i < roomItems.length; i++) {
-			if (system.in_array(itemKey, roomItems[i].keys)) {
-				var item = roomItems.splice(i, 1)
+		let roomItems = this.getItems(pos.zone, pos.room)
+		for (let i = 0; i < roomItems.length; i++) {
+			if (roomItems[i].keys.includes(itemKey)) {
+				let item = roomItems.splice(i, 1)
 				return item[0]
 			}
 		}

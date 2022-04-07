@@ -1,43 +1,52 @@
 <html>
+
 <head>
-<title>Text Based</title>
-<style type="text/css">
-body {
-	font-family: "Lucida Console", Monaco, monospace;
-	font-size: 14px;
-	color: lightgray;
-	background-color: black;
-}
+	<title>Text Based</title>
+	<style type="text/css">
+		body {
+			font-family: "Lucida Console", Monaco, monospace;
+			font-size: 14px;
+			color: lightgray;
+			background-color: black;
+		}
 
-input {
-	font-family: "Lucida Console", Monaco, monospace;
-	font-size: 14px;
-	background-color: black;
-	color: lightgray;
-	border: 1px solid #505050;
-}
+		input {
+			font-family: "Lucida Console", Monaco, monospace;
+			font-size: 14px;
+			background-color: black;
+			color: lightgray;
+			border: 1px solid #505050;
+		}
 
-button {
-	font-family: "Lucida Console", Monaco, monospace;
-	font-size: 14px;
-	background-color: black;
-	color: lightgray;
-	border: 1px solid #505050;
-}
+		button {
+			font-family: "Lucida Console", Monaco, monospace;
+			font-size: 14px;
+			background-color: black;
+			color: lightgray;
+			border: 1px solid #505050;
+		}
 
-strong {
-	color: white;
-}
-</style>
+		strong {
+			color: white;
+		}
+	</style>
 </head>
+
 <body>
 	<div id="output" style="height: 300px; overflow: auto; overflow-x: hidden;"></div>
 	<input type="text" id="input" style="max-width: 500px; width: 70%" />
 	<button id="submit" onclick="javascript:;">Submit</button>
-	<script type="text/javascript" src="world.js"></script>
-	<script type="text/javascript" src="player.js"></script>
-	<script type="text/javascript" src="oldhouse.js"></script>
-	<script type="text/javascript" src="garden.js"></script>
-	<script type="text/javascript" src="system.js"></script>
+	<script src="world.js"></script>
+	<script src="roomcore.js"></script>
+	<script src="player.js"></script>
+	<script src="oldhouse.js"></script>
+	<script src="garden.js"></script>
+	<script src="system.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			window.system.init()
+		})
+	</script>
 </body>
+
 </html>
