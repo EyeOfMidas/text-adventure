@@ -1,7 +1,7 @@
 import { world, system, player, RoomCore, ItemCore } from "./library/Core.js"
-import { OldHouse, OldHouse_DarkenedHallway } from "./oldhouse.js"
+import OldHouse from "./oldhouse.js"
 
-export class Garden_Patio extends RoomCore {
+class Garden_Patio extends RoomCore {
 	constructor() {
 		super(
 			"A lush outdoor garden",
@@ -14,7 +14,7 @@ export class Garden_Patio extends RoomCore {
 		system.println("You enter the house.")
 		system.println("")
 		system.println("You blink as your eyes adjust to the darkness.")
-		player.setPosition(OldHouse, OldHouse_DarkenedHallway)
+		player.setPosition(OldHouse, OldHouse.Rooms.OldHouse_DarkenedHallway)
 		return true
 	}
 
@@ -43,7 +43,7 @@ export class Garden_Shed extends RoomCore {
 	}
 }
 
-export class GardenItems_Pansy extends ItemCore {
+class GardenItems_Pansy extends ItemCore {
 	constructor() {
 		super(
 			["flower", "pansy"],
@@ -69,8 +69,11 @@ export class GardenItems_WateringCan extends ItemCore {
 	}
 }
 
-export class Garden{}
+export default class Garden {
+	static Rooms = {Garden_Patio, Garden_Shed}
+	static Items = {GardenItems_Pansy, GardenItems_WateringCan}
+}
 
-world.addZone(Garden, [Garden_Patio, Garden_Shed]);
-world.addItems(Garden, Garden_Patio, [GardenItems_Pansy]);
-world.addItems(Garden, Garden_Shed, [GardenItems_WateringCan]);
+world.addZone(Garden, Object.values(Garden.Rooms))
+world.addItems(Garden, Garden.Rooms.Garden_Patio, [Garden.Items.GardenItems_Pansy])
+world.addItems(Garden, Garden.Rooms.Garden_Shed, [Garden.Items.GardenItems_WateringCan])

@@ -1,7 +1,7 @@
 import { world, system, player, RoomCore, ItemCore } from "./library/Core.js"
-import { Garden, Garden_Patio } from "./garden.js"
+import Garden from "./garden.js"
 
-export class OldHouse_SunnyHallway extends RoomCore {
+class OldHouse_SunnyHallway extends RoomCore {
 	constructor() {
 		super(
 			"A Sunny Hallway",
@@ -24,7 +24,7 @@ export class OldHouse_SunnyHallway extends RoomCore {
 	}
 }
 
-export class OldHouse_DarkenedHallway extends RoomCore {
+class OldHouse_DarkenedHallway extends RoomCore {
 	constructor() {
 		super(
 			"A darkened hallway",
@@ -43,7 +43,7 @@ export class OldHouse_DarkenedHallway extends RoomCore {
 	east() {
 		system.println("You walk through the door and out into the garden, blinking in the sudden harsh light.")
 		system.println("")
-		player.setPosition(Garden, Garden_Patio)
+		player.setPosition(Garden, Garden.Rooms.Garden_Patio)
 		return true
 	}
 
@@ -54,7 +54,7 @@ export class OldHouse_DarkenedHallway extends RoomCore {
 		return true
 	}
 }
-export class OldHouse_EntryHall extends RoomCore {
+class OldHouse_EntryHall extends RoomCore {
 	constructor() {
 		super("Entry Hall",
 			"The ceiling of the hall is vaulted, with the light streaming in through the stained glass windows casting colorful shadows across the worn carpet.",
@@ -69,7 +69,7 @@ export class OldHouse_EntryHall extends RoomCore {
 		return true
 	}
 }
-export class OldHouse_GrandBallroom extends RoomCore {
+class OldHouse_GrandBallroom extends RoomCore {
 	constructor() {
 		super("Grand Ballroom",
 			"The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom. In the center of the tremendous vaulted ceiling hangs an enormous crystal chandelier, casting sparkles of light across the ornately gilded walls.",
@@ -85,7 +85,7 @@ export class OldHouse_GrandBallroom extends RoomCore {
 	}
 }
 
-export class BallroomItems_Pearl extends ItemCore {
+class BallroomItems_Pearl extends ItemCore {
 	constructor() {
 		super(["pearl", "bead"])
 		this.viewed = false
@@ -146,15 +146,19 @@ export class BallroomItems_Pearl extends ItemCore {
 		return false
 	}
 }
+export default class OldHouse {
+	static Rooms = {
+		OldHouse_SunnyHallway,
+		OldHouse_DarkenedHallway,
+		OldHouse_EntryHall,
+		OldHouse_GrandBallroom,
+	}
+	static Items = {
+		BallroomItems_Pearl,
+	}
+}
 
-export class OldHouse {}
-
-world.addZone(OldHouse, [
-	OldHouse_SunnyHallway,
-	OldHouse_DarkenedHallway,
-	OldHouse_EntryHall,
-	OldHouse_GrandBallroom,
-])
+world.addZone(OldHouse, Object.values(OldHouse.Rooms))
 world.addItems(OldHouse, OldHouse_GrandBallroom, [
 	BallroomItems_Pearl,
 ])
