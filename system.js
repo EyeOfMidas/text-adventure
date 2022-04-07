@@ -19,7 +19,7 @@ class System {
 		}, false)
 
 		this.clear()
-		player.setPosition(0, 2) // this is the entry hall in oldhouse
+		player.setPosition("OldHouse", OldHouse_EntryHall)
 
 	}
 

@@ -11,7 +11,7 @@ class Garden_Patio extends RoomCore {
 		system.println("You enter the house.")
 		system.println("")
 		system.println("You blink as your eyes adjust to the darkness.")
-		player.setPosition(0, 1)
+		player.setPosition("OldHouse", OldHouse_DarkenedHallway)
 		return true
 	}
 }
@@ -29,5 +29,5 @@ class GardenItems_Pansy extends ItemCore {
 	}
 }
 
-world.addZone(1, [Garden_Patio]);
-world.addItems(1, 0, [GardenItems_Pansy]);
+world.addZone("Garden", [Garden_Patio]);
+world.addItems("Garden", Garden_Patio, [GardenItems_Pansy]);

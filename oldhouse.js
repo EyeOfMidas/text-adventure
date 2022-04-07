@@ -9,14 +9,14 @@ class OldHouse_SunnyHallway extends RoomCore {
 	north() {
 		system.println("You walk north.")
 		system.println("")
-		player.setPosition(0, 1)
+		player.setPosition("OldHouse", OldHouse_DarkenedHallway)
 		return true
 	}
 
 	south() {
 		system.println("You walk south.")
 		system.println("")
-		player.setPosition(0, 2)
+		player.setPosition("OldHouse", OldHouse_EntryHall)
 		return true
 	}
 }
@@ -33,21 +33,21 @@ class OldHouse_DarkenedHallway extends RoomCore {
 	south() {
 		system.println("You walk south.")
 		system.println("")
-		player.setPosition(0, 0)
+		player.setPosition("OldHouse", OldHouse_SunnyHallway)
 		return true
 	}
 
 	east() {
 		system.println("You walk through the door and out into the garden, blinking in the sudden harsh light.")
 		system.println("")
-		player.setPosition(1, 0)
+		player.setPosition("Garden", Garden_Patio)
 		return true
 	}
 
 	north() {
 		system.println("You walk north.")
 		system.println("")
-		player.setPosition(0, 3)
+		player.setPosition("OldHouse", OldHouse_GrandBallroom)
 		return true
 	}
 }
@@ -62,7 +62,7 @@ class OldHouse_EntryHall extends RoomCore {
 	north() {
 		system.println("You walk north.")
 		system.println("")
-		player.setPosition(0, 0)
+		player.setPosition("OldHouse", OldHouse_SunnyHallway)
 		return true
 	}
 }
@@ -77,7 +77,7 @@ class OldHouse_GrandBallroom extends RoomCore {
 	south() {
 		system.println("You walk south.")
 		system.println("")
-		player.setPosition(0, 1)
+		player.setPosition("OldHouse", OldHouse_DarkenedHallway)
 		return true
 	}
 }
@@ -144,12 +144,12 @@ class BallroomItems_Pearl extends ItemCore {
 	}
 }
 
-window.world.addZone(0, [
+window.world.addZone("OldHouse", [
 	OldHouse_SunnyHallway,
 	OldHouse_DarkenedHallway,
 	OldHouse_EntryHall,
 	OldHouse_GrandBallroom,
 ])
-window.world.addItems(0, 3, [
+window.world.addItems("OldHouse", OldHouse_GrandBallroom, [
 	BallroomItems_Pearl
 ])

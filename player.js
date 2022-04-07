@@ -1,7 +1,7 @@
 class Player {
 	constructor() {
-		this.currentZone = 0
-		this.currentRoom = 0
+		this.currentZone = null
+		this.currentRoom = null
 		this.playerInventory = []
 	}
 
@@ -20,10 +20,8 @@ class Player {
 		return false
 	}
 
-	l() {
-		this.look(...arguments)
-	}
-
+	l = this.look
+	
 	inventory() {
 		if (this.playerInventory.length <= 0) {
 			system.println("You are not carrying anything.")

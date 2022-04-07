@@ -1,38 +1,31 @@
 class World {
 	constructor() {
-		this.roomObjs = []
-		this.items = []
+		this.roomObjs = {}
+		this.items = {}
 	}
 
-	addZone(zoneIndex, zoneData) {
-		this.roomObjs[zoneIndex] = []
-		this.items[zoneIndex] = []
-		for (let i = 0; i < zoneData.length; i++) {
-			this.roomObjs[zoneIndex][i] = new zoneData[i]()
-			this.items[zoneIndex][i] = []
-		}
+	addZone(zone, zoneData) {
+		this.roomObjs[zone] = []
+		this.items[zone] = []
+		zoneData.forEach(roomClass => {
+			this.roomObjs[zone][roomClass.name] = new roomClass()
+			this.items[zone][roomClass.name] = []
+		})
 	}
 
 	getRoom(zone, room) {
-		return this.roomObjs[zone][room]
+		return this.roomObjs[zone][room.name]
 	}
 
 	addItems(zone, room, roomItems) {
 		for (let i = 0; i < roomItems.length; i++) {
 			let roomItem = new roomItems[i]()
-			this.items[zone][room].push(roomItem)
-		}
-	}
-
-	printItems(zone, room) {
-		let roomItems = this.items[zone][room]
-		for (let i = 0; i < roomItems.length; i++) {
-			roomItems[i].look()
+			this.items[zone][room.name].push(roomItem)
 		}
 	}
 
 	getItems(zone, room) {
-		return this.items[zone][room]
+		return this.items[zone][room.name]
 	}
 
 	takeItem(itemKey, pos) {
@@ -46,7 +39,7 @@ class World {
 		return null
 	}
 	giveItem(item, pos) {
-		this.items[pos.zone][pos.room].push(item)
+		this.items[pos.zone][pos.room.name].push(item)
 	}
 }
 
