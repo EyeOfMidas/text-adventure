@@ -58,7 +58,7 @@ class System {
 				if (!player.actions(command, commandData)) {
 					if (!this.handleInventoryItems(command, commandData)) {
 						if (!this.actions(command, commandData)) {
-							this.println("I don't recognize '" + command + "'.")
+							this.println(`I don't recognize '${command}'.`)
 						}
 					}
 				}

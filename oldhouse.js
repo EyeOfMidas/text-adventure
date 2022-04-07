@@ -82,21 +82,14 @@ class OldHouse_GrandBallroom extends RoomCore {
 	}
 }
 
-class BallroomItems_Pearl {
+class BallroomItems_Pearl extends ItemCore {
 	constructor() {
+		super(["pearl", "bead"])
 		this.viewed = false
-		this.keys = ["pearl", "bead"]
-	}
-
-	actions(command, commandData) {
-		if (typeof (this[command]) == "function") {
-			return this[command](commandData)
-		}
-		return false
 	}
 
 	look(commandData) {
-		if (commandData.length > 0 && this.keys.includes(commanData[0])) {
+		if (commandData.length > 0 && this.keys.includes(commandData[0])) {
 			system.println("It is a shiny, opalescent pearl.")
 			this.viewed = true
 			return true
@@ -111,7 +104,6 @@ class BallroomItems_Pearl {
 		return false
 	}
 
-	l = this.look
 	take(commandData) {
 		if (this.keys.includes(commandData[0])) {
 			if (this.viewed) {

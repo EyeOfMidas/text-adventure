@@ -16,54 +16,16 @@ class Garden_Patio extends RoomCore {
 	}
 }
 
-class GardenItems_Pansy {
+class GardenItems_Pansy extends ItemCore {
 	constructor() {
-		this.keys = ["flower", "pansy"]
-	}
-
-	actions(command, commandData) {
-		if (typeof (this[command]) == "function") {
-			return this[command](commandData)
-		}
-		return false
-	}
-
-	look(commandData) {
-		if (commandData.length > 0 && this.keys.includes(commandData[0])) {
-			system.println("The small purple pansy looks limp.")
-			return true
-		}
-		if (commandData.length <= 0) {
-			system.println("A small flower wilts on the ground.")
-		}
-		return false
-	}
-	l = this.look
-	take(commandData) {
-		if (this.keys.includes(commandData[0])) {
-			system.println("You carefully put the flower in your pocket.")
-			system.println("")
-			var item = world.takeItem(commandData[0], player.getPosition())
-			player.giveItem(item)
-			return true
-		}
-		return false
-	}
-
-	held() {
-		system.println("a flower")
-		return false
-	}
-
-	drop(commandData) {
-		if (this.keys.includes(commandData[0])) {
-			system.println("You let the flower fall to the floor.")
-			system.println("")
-			var item = player.takeItem(commandData[0])
-			world.giveItem(item, player.getPosition())
-			return true
-		}
-		return false
+		super(
+			["flower", "pansy"],
+			"A small flower wilts on the ground.",
+			"The small purple pansy looks limp.",
+			"You carefully put the flower in your pocket.",
+			"a flower",
+			"You let the flower fall to the floor."
+		)
 	}
 }
 
