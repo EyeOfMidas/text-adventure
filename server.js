@@ -13,14 +13,14 @@ const baseDir = path.join(__dirname, '.');
 // Create a server
 
 const httpServer = http.createServer((request, response) => {
-  
+
   const parsedUrl = url.parse(request.url, true);
   let pathName = parsedUrl.pathname;
 
-  if(pathName == "/") {
-      pathName = "/index.html"
+  if (pathName == "/") {
+    pathName = "/index.html"
   }
-  
+
   // Get the contentType based on the file extension
   const responseContentType = getContentType(pathName);
   // Set the 'Content-Type' in response header
@@ -64,13 +64,13 @@ let port = 3000
 let host = '127.0.0.1'
 
 httpServer.listen(port, () => {
-    console.log(`\x1b[32m%s\x1b[0m`, `Server is running at http://${host}:${port}`);
-    var url = `http://${host}:${port}`;
-    var start = (process.platform == 'darwin'? 'open': process.platform == 'win32'? 'start': 'xdg-open');
-    var child = childProcess.exec(`${start} ${url}`);
-    // child.on('exit', function() {
-    //     httpServer.close()
-    // })
+  console.log(`\x1b[32m%s\x1b[0m`, `Server is running at http://${host}:${port}`);
+  var url = `http://${host}:${port}`;
+  var start = (process.platform == 'darwin' ? 'open' : process.platform == 'win32' ? 'start' : 'xdg-open');
+  var child = childProcess.exec(`${start} ${url}`);
+  // child.on('exit', function() {
+  //     httpServer.close()
+  // })
 });
 
 

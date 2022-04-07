@@ -1,9 +1,5 @@
-import world from "./World.js"
-import system from "./System.js"
-import player from "./Player.js"
-import RoomCore from "./RoomCore.js"
-import ItemCore from "./ItemCore.js"
-import {Garden_Patio} from "./garden.js"
+import { world, system, player, RoomCore, ItemCore } from "./library/Core.js"
+import { Garden_Patio } from "./garden.js"
 
 export class OldHouse_SunnyHallway extends RoomCore {
 	constructor() {
@@ -151,7 +147,7 @@ export class BallroomItems_Pearl extends ItemCore {
 	}
 }
 
-export var OldHouse  = {
+export var OldHouse = {
 	Rooms: [
 		OldHouse_SunnyHallway,
 		OldHouse_DarkenedHallway,

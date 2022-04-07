@@ -1,9 +1,5 @@
-import world from "./World.js"
-import system from "./System.js"
-import player from "./Player.js"
-import RoomCore from "./RoomCore.js"
-import ItemCore from "./ItemCore.js"
-import {OldHouse_DarkenedHallway} from "./oldhouse.js"
+import { world, system, player, RoomCore, ItemCore } from "./library/Core.js"
+import { OldHouse_DarkenedHallway } from "./oldhouse.js"
 
 export class Garden_Patio extends RoomCore {
 	constructor() {
