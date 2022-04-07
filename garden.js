@@ -1,5 +1,5 @@
 import { world, system, player, RoomCore, ItemCore } from "./library/Core.js"
-import { OldHouse_DarkenedHallway } from "./oldhouse.js"
+import { OldHouse, OldHouse_DarkenedHallway } from "./oldhouse.js"
 
 export class Garden_Patio extends RoomCore {
 	constructor() {
@@ -14,7 +14,7 @@ export class Garden_Patio extends RoomCore {
 		system.println("You enter the house.")
 		system.println("")
 		system.println("You blink as your eyes adjust to the darkness.")
-		player.setPosition("OldHouse", OldHouse_DarkenedHallway)
+		player.setPosition(OldHouse, OldHouse_DarkenedHallway)
 		return true
 	}
 }
@@ -32,5 +32,7 @@ export class GardenItems_Pansy extends ItemCore {
 	}
 }
 
-world.addZone("Garden", [Garden_Patio]);
-world.addItems("Garden", Garden_Patio, [GardenItems_Pansy]);
+export class Garden{}
+
+world.addZone(Garden, [Garden_Patio]);
+world.addItems(Garden, Garden_Patio, [GardenItems_Pansy]);

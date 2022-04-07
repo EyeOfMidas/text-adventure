@@ -1,5 +1,5 @@
 import { world, system, player, RoomCore, ItemCore } from "./library/Core.js"
-import { Garden_Patio } from "./garden.js"
+import { Garden, Garden_Patio } from "./garden.js"
 
 export class OldHouse_SunnyHallway extends RoomCore {
 	constructor() {
@@ -12,14 +12,14 @@ export class OldHouse_SunnyHallway extends RoomCore {
 	north() {
 		system.println("You walk north.")
 		system.println("")
-		player.setPosition("OldHouse", OldHouse_DarkenedHallway)
+		player.setPosition(OldHouse, OldHouse_DarkenedHallway)
 		return true
 	}
 
 	south() {
 		system.println("You walk south.")
 		system.println("")
-		player.setPosition("OldHouse", OldHouse_EntryHall)
+		player.setPosition(OldHouse, OldHouse_EntryHall)
 		return true
 	}
 }
@@ -36,21 +36,21 @@ export class OldHouse_DarkenedHallway extends RoomCore {
 	south() {
 		system.println("You walk south.")
 		system.println("")
-		player.setPosition("OldHouse", OldHouse_SunnyHallway)
+		player.setPosition(OldHouse, OldHouse_SunnyHallway)
 		return true
 	}
 
 	east() {
 		system.println("You walk through the door and out into the garden, blinking in the sudden harsh light.")
 		system.println("")
-		player.setPosition("Garden", Garden_Patio)
+		player.setPosition(Garden, Garden_Patio)
 		return true
 	}
 
 	north() {
 		system.println("You walk north.")
 		system.println("")
-		player.setPosition("OldHouse", OldHouse_GrandBallroom)
+		player.setPosition(OldHouse, OldHouse_GrandBallroom)
 		return true
 	}
 }
@@ -65,7 +65,7 @@ export class OldHouse_EntryHall extends RoomCore {
 	north() {
 		system.println("You walk north.")
 		system.println("")
-		player.setPosition("OldHouse", OldHouse_SunnyHallway)
+		player.setPosition(OldHouse, OldHouse_SunnyHallway)
 		return true
 	}
 }
@@ -80,7 +80,7 @@ export class OldHouse_GrandBallroom extends RoomCore {
 	south() {
 		system.println("You walk south.")
 		system.println("")
-		player.setPosition("OldHouse", OldHouse_DarkenedHallway)
+		player.setPosition(OldHouse, OldHouse_DarkenedHallway)
 		return true
 	}
 }
@@ -147,17 +147,14 @@ export class BallroomItems_Pearl extends ItemCore {
 	}
 }
 
-export var OldHouse = {
-	Rooms: [
-		OldHouse_SunnyHallway,
-		OldHouse_DarkenedHallway,
-		OldHouse_EntryHall,
-		OldHouse_GrandBallroom,
-	],
-	Items: [
-		BallroomItems_Pearl,
-	],
-}
+export class OldHouse {}
 
-world.addZone("OldHouse", OldHouse.Rooms)
-world.addItems("OldHouse", OldHouse_GrandBallroom, OldHouse.Items)
+world.addZone(OldHouse, [
+	OldHouse_SunnyHallway,
+	OldHouse_DarkenedHallway,
+	OldHouse_EntryHall,
+	OldHouse_GrandBallroom,
+])
+world.addItems(OldHouse, OldHouse_GrandBallroom, [
+	BallroomItems_Pearl,
+])

@@ -5,26 +5,26 @@ export class World {
 	}
 
 	addZone(zone, zoneData) {
-		this.roomObjs[zone] = []
-		this.items[zone] = []
+		this.roomObjs[zone.name] = []
+		this.items[zone.name] = []
 		zoneData.forEach(roomClass => {
-			this.roomObjs[zone][roomClass.name] = new roomClass()
-			this.items[zone][roomClass.name] = []
+			this.roomObjs[zone.name][roomClass.name] = new roomClass()
+			this.items[zone.name][roomClass.name] = []
 		})
 	}
 
 	getRoom(zone, room) {
-		return this.roomObjs[zone][room.name]
+		return this.roomObjs[zone.name][room.name]
 	}
 
 	addItems(zone, room, roomItems) {
 		roomItems.forEach(itemClass => {
-			this.items[zone][room.name].push(new itemClass())
+			this.items[zone.name][room.name].push(new itemClass())
 		})
 	}
 
 	getItems(zone, room) {
-		return this.items[zone][room.name]
+		return this.items[zone.name][room.name]
 	}
 
 	takeItem(itemKey, pos) {
@@ -38,7 +38,7 @@ export class World {
 		return null
 	}
 	giveItem(item, pos) {
-		this.items[pos.zone][pos.room.name].push(item)
+		this.items[pos.zone.name][pos.room.name].push(item)
 	}
 }
 
