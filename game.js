@@ -3,5 +3,5 @@ import OldHouse from "./oldhouse.js"
 
 document.addEventListener("DOMContentLoaded", () => {
     system.init()
-    player.setPosition(OldHouse, OldHouse.Rooms.OldHouse_EntryHall)
+    player.setPosition(OldHouse, OldHouse.Rooms.EntryHall)
 })

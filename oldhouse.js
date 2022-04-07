@@ -1,7 +1,7 @@
 import { world, system, player, RoomCore, ItemCore } from "./library/Core.js"
 import Garden from "./garden.js"
 
-class OldHouse_SunnyHallway extends RoomCore {
+class SunnyHallway extends RoomCore {
 	constructor() {
 		super(
 			"A Sunny Hallway",
@@ -12,19 +12,19 @@ class OldHouse_SunnyHallway extends RoomCore {
 	north() {
 		system.println("You walk north.")
 		system.println("")
-		player.setPosition(OldHouse, OldHouse_DarkenedHallway)
+		player.setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
 		return true
 	}
 
 	south() {
 		system.println("You walk south.")
 		system.println("")
-		player.setPosition(OldHouse, OldHouse_EntryHall)
+		player.setPosition(OldHouse, OldHouse.Rooms.EntryHall)
 		return true
 	}
 }
 
-class OldHouse_DarkenedHallway extends RoomCore {
+class DarkenedHallway extends RoomCore {
 	constructor() {
 		super(
 			"A darkened hallway",
@@ -36,27 +36,28 @@ class OldHouse_DarkenedHallway extends RoomCore {
 	south() {
 		system.println("You walk south.")
 		system.println("")
-		player.setPosition(OldHouse, OldHouse_SunnyHallway)
+		player.setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
 		return true
 	}
 
 	east() {
 		system.println("You walk through the door and out into the garden, blinking in the sudden harsh light.")
 		system.println("")
-		player.setPosition(Garden, Garden.Rooms.Garden_Patio)
+		player.setPosition(Garden, Garden.Rooms.Patio)
 		return true
 	}
 
 	north() {
 		system.println("You walk north.")
 		system.println("")
-		player.setPosition(OldHouse, OldHouse_GrandBallroom)
+		player.setPosition(OldHouse, OldHouse.Rooms.GrandBallroom)
 		return true
 	}
 }
-class OldHouse_EntryHall extends RoomCore {
+class EntryHall extends RoomCore {
 	constructor() {
-		super("Entry Hall",
+		super(
+			"Entry Hall",
 			"The ceiling of the hall is vaulted, with the light streaming in through the stained glass windows casting colorful shadows across the worn carpet.",
 			"A hallway extends to the <strong>north</strong>. The door to the south does not look like it will open.",
 		)
@@ -65,13 +66,14 @@ class OldHouse_EntryHall extends RoomCore {
 	north() {
 		system.println("You walk north.")
 		system.println("")
-		player.setPosition(OldHouse, OldHouse_SunnyHallway)
+		player.setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
 		return true
 	}
 }
-class OldHouse_GrandBallroom extends RoomCore {
+class GrandBallroom extends RoomCore {
 	constructor() {
-		super("Grand Ballroom",
+		super(
+			"Grand Ballroom",
 			"The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom. In the center of the tremendous vaulted ceiling hangs an enormous crystal chandelier, casting sparkles of light across the ornately gilded walls.",
 			"A hallway extends beneath an archway to the <strong>south</strong>.",
 		)
@@ -80,12 +82,12 @@ class OldHouse_GrandBallroom extends RoomCore {
 	south() {
 		system.println("You walk south.")
 		system.println("")
-		player.setPosition(OldHouse, OldHouse_DarkenedHallway)
+		player.setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
 		return true
 	}
 }
 
-class BallroomItems_Pearl extends ItemCore {
+class Pearl extends ItemCore {
 	constructor() {
 		super(["pearl", "bead"])
 		this.viewed = false
@@ -148,17 +150,15 @@ class BallroomItems_Pearl extends ItemCore {
 }
 export default class OldHouse {
 	static Rooms = {
-		OldHouse_SunnyHallway,
-		OldHouse_DarkenedHallway,
-		OldHouse_EntryHall,
-		OldHouse_GrandBallroom,
+		SunnyHallway,
+		DarkenedHallway,
+		EntryHall,
+		GrandBallroom,
 	}
 	static Items = {
-		BallroomItems_Pearl,
+		Pearl,
 	}
 }
 
 world.addZone(OldHouse, Object.values(OldHouse.Rooms))
-world.addItems(OldHouse, OldHouse_GrandBallroom, [
-	BallroomItems_Pearl,
-])
+world.addItems(OldHouse, OldHouse.Rooms.GrandBallroom, [OldHouse.Items.Pearl])

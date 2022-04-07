@@ -1,7 +1,7 @@
 import { world, system, player, RoomCore, ItemCore } from "./library/Core.js"
 import OldHouse from "./oldhouse.js"
 
-class Garden_Patio extends RoomCore {
+class Patio extends RoomCore {
 	constructor() {
 		super(
 			"A lush outdoor garden",
@@ -14,19 +14,19 @@ class Garden_Patio extends RoomCore {
 		system.println("You enter the house.")
 		system.println("")
 		system.println("You blink as your eyes adjust to the darkness.")
-		player.setPosition(OldHouse, OldHouse.Rooms.OldHouse_DarkenedHallway)
+		player.setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
 		return true
 	}
 
 	south() {
 		system.println("You enter the shed.")
 		system.println("")
-		player.setPosition(Garden, Garden_Shed)
+		player.setPosition(Garden, Garden.Rooms.Shed)
 		return true
 	}
 }
 
-export class Garden_Shed extends RoomCore {
+export class Shed extends RoomCore {
 	constructor() {
 		super(
 			"The gardener's shed",
@@ -38,12 +38,12 @@ export class Garden_Shed extends RoomCore {
 	north() {
 		system.println("You walk north, into the garden.")
 		system.println("")
-		player.setPosition(Garden, Garden_Patio)
+		player.setPosition(Garden, Patio)
 		return true
 	}
 }
 
-class GardenItems_Pansy extends ItemCore {
+class Pansy extends ItemCore {
 	constructor() {
 		super(
 			["flower", "pansy"],
@@ -56,7 +56,7 @@ class GardenItems_Pansy extends ItemCore {
 	}
 }
 
-export class GardenItems_WateringCan extends ItemCore {
+export class WateringCan extends ItemCore {
 	constructor() {
 		super(
 			["can", "watering"],
@@ -70,10 +70,11 @@ export class GardenItems_WateringCan extends ItemCore {
 }
 
 export default class Garden {
-	static Rooms = {Garden_Patio, Garden_Shed}
-	static Items = {GardenItems_Pansy, GardenItems_WateringCan}
+	static Rooms = {Patio, Shed}
+	static Items = {Pansy, WateringCan}
 }
 
 world.addZone(Garden, Object.values(Garden.Rooms))
-world.addItems(Garden, Garden.Rooms.Garden_Patio, [Garden.Items.GardenItems_Pansy])
-world.addItems(Garden, Garden.Rooms.Garden_Shed, [Garden.Items.GardenItems_WateringCan])
+world.addItems(Garden, Garden.Rooms.Patio, [Garden.Items.Pansy])
+world.addItems(Garden, Garden.Rooms.Shed, [Garden.Items.WateringCan])
+
