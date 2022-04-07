@@ -1,4 +1,11 @@
-class Garden_Patio extends RoomCore {
+import world from "./World.js"
+import system from "./System.js"
+import player from "./Player.js"
+import RoomCore from "./roomcore.js"
+import ItemCore from "./ItemCore.js"
+import {OldHouse_DarkenedHallway} from "./oldhouse.js"
+
+export class Garden_Patio extends RoomCore {
 	constructor() {
 		super(
 			"A lush outdoor garden",
@@ -16,7 +23,7 @@ class Garden_Patio extends RoomCore {
 	}
 }
 
-class GardenItems_Pansy extends ItemCore {
+export class GardenItems_Pansy extends ItemCore {
 	constructor() {
 		super(
 			["flower", "pansy"],

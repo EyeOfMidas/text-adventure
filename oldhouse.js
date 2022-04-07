@@ -1,4 +1,11 @@
-class OldHouse_SunnyHallway extends RoomCore {
+import world from "./World.js"
+import system from "./System.js"
+import player from "./Player.js"
+import RoomCore from "./roomcore.js"
+import ItemCore from "./ItemCore.js"
+import {Garden_Patio} from "./garden.js"
+
+export class OldHouse_SunnyHallway extends RoomCore {
 	constructor() {
 		super(
 			"A Sunny Hallway",
@@ -21,7 +28,7 @@ class OldHouse_SunnyHallway extends RoomCore {
 	}
 }
 
-class OldHouse_DarkenedHallway extends RoomCore {
+export class OldHouse_DarkenedHallway extends RoomCore {
 	constructor() {
 		super(
 			"A darkened hallway",
@@ -51,7 +58,7 @@ class OldHouse_DarkenedHallway extends RoomCore {
 		return true
 	}
 }
-class OldHouse_EntryHall extends RoomCore {
+export class OldHouse_EntryHall extends RoomCore {
 	constructor() {
 		super("Entry Hall",
 			"The ceiling of the hall is vaulted, with the light streaming in through the stained glass windows casting colorful shadows across the worn carpet.",
@@ -66,7 +73,7 @@ class OldHouse_EntryHall extends RoomCore {
 		return true
 	}
 }
-class OldHouse_GrandBallroom extends RoomCore {
+export class OldHouse_GrandBallroom extends RoomCore {
 	constructor() {
 		super("Grand Ballroom",
 			"The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom. In the center of the tremendous vaulted ceiling hangs an enormous crystal chandelier, casting sparkles of light across the ornately gilded walls.",
@@ -82,7 +89,7 @@ class OldHouse_GrandBallroom extends RoomCore {
 	}
 }
 
-class BallroomItems_Pearl extends ItemCore {
+export class BallroomItems_Pearl extends ItemCore {
 	constructor() {
 		super(["pearl", "bead"])
 		this.viewed = false
@@ -144,12 +151,17 @@ class BallroomItems_Pearl extends ItemCore {
 	}
 }
 
-window.world.addZone("OldHouse", [
-	OldHouse_SunnyHallway,
-	OldHouse_DarkenedHallway,
-	OldHouse_EntryHall,
-	OldHouse_GrandBallroom,
-])
-window.world.addItems("OldHouse", OldHouse_GrandBallroom, [
-	BallroomItems_Pearl
-])
+export var OldHouse  = {
+	Rooms: [
+		OldHouse_SunnyHallway,
+		OldHouse_DarkenedHallway,
+		OldHouse_EntryHall,
+		OldHouse_GrandBallroom,
+	],
+	Items: [
+		BallroomItems_Pearl,
+	],
+}
+
+world.addZone("OldHouse", OldHouse.Rooms)
+world.addItems("OldHouse", OldHouse_GrandBallroom, OldHouse.Items)
