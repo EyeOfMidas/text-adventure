@@ -106,6 +106,8 @@ class ItemCore {
 		return false
 	}
 
+    get = this.take
+
 	held() {
 		system.println(this.heldText)
 		return false
