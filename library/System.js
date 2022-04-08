@@ -63,11 +63,9 @@ export class System {
 
 		if (!room.actions(command, commandData)) {
 			if (!this.handleRoomItems(playerPos, command, commandData)) {
-				if (!player.actions(command, commandData)) {
-					if (!this.handleInventoryItems(command, commandData)) {
-						if (!this.actions(command, commandData)) {
-							this.println(`I don't recognize '${command}'.`)
-						}
+				if (!this.handleInventoryItems(command, commandData)) {
+					if (!this.actions(command, commandData)) {
+						this.println(`I don't recognize '${command}'.`)
 					}
 				}
 			}
@@ -85,6 +83,14 @@ export class System {
 		return false
 	}
 
+	printRoomItems() {
+		let playerPos = player.getPosition()
+		let roomItems = world.getItems(playerPos.zone, playerPos.room)
+		roomItems.forEach(item => {
+			item.look()
+		})
+	}
+
 	handleInventoryItems(command, commandData) {
 		let inventory = player.getInventory()
 		for (let i = 0; i < inventory.length; i++) {
@@ -100,9 +106,22 @@ export class System {
 	}
 
 	actions(command, commandData) {
+		let playerInventory = player.getInventory()
 		switch (command) {
+			case "i":
+			case "inventory":
+				if (playerInventory.length <= 0) {
+					this.println("You are not carrying anything.")
+				} else {
+					this.println("You are holding:")
+					for (let itemIndex in playerInventory) {
+						playerInventory[itemIndex].held()
+					}
+				}
+				system.println("")
+				return true
 			case "take":
-				if(commandData[0]) {
+				if(commandData.length > 0) {
 					this.println(`I don't see '${commandData[0]}' to take.`)
 					this.println("")
 					return true
@@ -111,7 +130,7 @@ export class System {
 				this.println("")
 				return true
 			case "drop":
-				if(commandData[0]) {
+				if(commandData.length > 0) {
 					this.println(`I can't drop '${commandData[0]}'.`)
 					this.println("")
 					return true
@@ -127,7 +146,7 @@ export class System {
 				this.println("")
 				return true
 			case "debug":
-				let playerInventory = player.getInventory()
+				
 				let playerPos = player.getPosition()
 				switch (commandData[0]) {
 					case "inventory":

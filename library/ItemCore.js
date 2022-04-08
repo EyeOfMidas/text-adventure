@@ -20,16 +20,19 @@ export default class ItemCore {
 	}
 
 	look(commandData) {
+		if(!commandData || commandData.length <= 0) {
+			system.println(this.lookText)
+			return false
+		}
 		if (commandData.length > 0 && this.keys.includes(commandData[0])) {
 			system.println(this.lookAtText)
+			system.println("")
 			return true
 		}
-		if (commandData.length <= 0) {
-			system.println(this.lookText)
-		}
-		return false
 	}
+
 	l = this.look
+
 	take(commandData) {
 		if (this.keys.includes(commandData[0])) {
 			system.println(this.takeText)

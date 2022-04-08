@@ -26,11 +26,14 @@ export default class RoomCore {
     }
 
     look(commandData) {
-        if (!commandData || commandData.length <= 0) {
+        if (commandData.length <= 0) {
             system.println("You look around.")
             system.println("")
             system.println(this.description)
             system.println(this.exitsDescription)
+            system.printRoomItems()
+            system.println("")
+            return true
         }
         return false
     }

@@ -100,18 +100,21 @@ class Pearl extends ItemCore {
 	}
 
 	look(commandData) {
-		if (commandData.length > 0 && this.keys.includes(commandData[0])) {
-			system.println("It is a shiny, opalescent pearl.")
-			this.viewed = true
-			return true
-		}
-		if (commandData.length <= 0) {
+		if (!commandData || commandData.length <= 0) {
 			if (this.viewed) {
 				system.println("A perfect white pearl sits on the floor.")
 			} else {
 				system.println("A tiny white bead sits on the floor.")
 			}
+			return false
 		}
+		if (commandData.length > 0 && this.keys.includes(commandData[0])) {
+			system.println("It is a shiny, opalescent pearl.")
+			system.println("")
+			this.viewed = true
+			return true
+		}
+		
 		return false
 	}
 
