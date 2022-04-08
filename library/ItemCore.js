@@ -49,7 +49,7 @@ export default class ItemCore {
 	}
 
 	drop(commandData) {
-		if (this.keys.includes(commandData[0])) {
+		if (this.keys.includes(commandData[0]) && player.hasItem(this)) {
 			system.println(this.dropText)
 			system.println("")
 			var item = player.takeItem(commandData[0])

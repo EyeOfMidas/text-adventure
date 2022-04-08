@@ -74,6 +74,10 @@ export class Player {
 		}
 		return null
 	}
+
+	hasItem(item) {
+		return this.playerInventory.includes(item)
+	}
 }
 
 var player = new Player()
