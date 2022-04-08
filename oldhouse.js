@@ -85,6 +85,12 @@ class GrandBallroom extends RoomCore {
 		player.setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
 		return true
 	}
+
+	waltz() {
+		system.println("You twirl across the marble floors for a few moments, in time to an imagined string quartet. The exhilaration of spinning leaves you rosy-cheeked and breathless.")
+		system.println("")
+		return true
+	}
 }
 
 class Pearl extends ItemCore {

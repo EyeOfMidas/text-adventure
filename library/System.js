@@ -36,12 +36,12 @@ export class System {
 		this.print(message + "<br />\n")
 	}
 
-    log() {
-        [...arguments].forEach(argument => {
-            this.print(JSON.stringify(argument))
-        })
-        this.println("")
-    }
+	log() {
+		[...arguments].forEach(argument => {
+			this.print(JSON.stringify(argument))
+		})
+		this.println("")
+	}
 
 	clear() {
 		this.outputDiv.innerHTML = ""
@@ -100,25 +100,53 @@ export class System {
 	}
 
 	actions(command, commandData) {
-		if (command == "debug") {
-            let playerInventory = player.getInventory()
-            let playerPos = player.getPosition()
-            switch(commandData[0]) {
-                case "inventory":
-                    this.log("player inventory:", playerInventory)
-                    break;
-                case "room":
-                    this.log("room data:", world.getRoom(playerPos.zone, playerPos.room))
-				    this.log("room items:", world.getItems(playerPos.zone, playerPos.room))
-                    break;
-                default:
-                    this.log("player inventory:", playerInventory)
-                    this.log("room data:", world.getRoom(playerPos.zone, playerPos.room))
-				    this.log("room items:", world.getItems(playerPos.zone, playerPos.room))
-                    break;
-            }
-            return true
+		switch (command) {
+			case "take":
+				if(commandData[0]) {
+					this.println(`I don't see '${commandData[0]}' to take.`)
+					this.println("")
+					return true
+				}
+				this.println(`take what?`)
+				this.println("")
+				return true
+			case "drop":
+				if(commandData[0]) {
+					this.println(`I can't drop '${commandData[0]}'.`)
+					this.println("")
+					return true
+				}
+				this.println(`drop what?`)
+				this.println("")
+				return true
+			case "help":
+				this.println("This game is played by typing simple commands to describe what you want to do.")
+				this.println("If you want to see a room, type <strong>look</strong>. You can examine items by typing <strong>look [item]</strong>.")
+				this.println("You can travel around by typing directions such as <strong>north</strong> or <strong>s</strong> (for south).")
+				this.println("Most other actions can be done if they're in context. You can <strong>take</strong> and <strong>drop</strong> items, and sometimes do unique things, such as <strong>water flower</strong> or <strong>waltz</strong> based on what you have or where you are.")
+				this.println("")
+				return true
+			case "debug":
+				let playerInventory = player.getInventory()
+				let playerPos = player.getPosition()
+				switch (commandData[0]) {
+					case "inventory":
+						this.log("player inventory:", playerInventory)
+						break;
+					case "room":
+						this.log("room data:", world.getRoom(playerPos.zone, playerPos.room))
+						this.log("room items:", world.getItems(playerPos.zone, playerPos.room))
+						break;
+					default:
+						this.log("player inventory:", playerInventory)
+						this.log("room data:", world.getRoom(playerPos.zone, playerPos.room))
+						this.log("room items:", world.getItems(playerPos.zone, playerPos.room))
+						break;
+				}
+				return true
 
+			default:
+				break;
 		}
 		return false
 	}

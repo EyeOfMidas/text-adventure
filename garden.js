@@ -67,6 +67,14 @@ export class WateringCan extends ItemCore {
 			"You place the watering can on the ground.",
 		)
 	}
+
+	water() {
+		if(player.hasItem(this)) {
+			system.println("water what?")
+			system.println("")
+			return true
+		}
+	}
 }
 
 export default class Garden {
