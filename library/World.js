@@ -38,7 +38,7 @@ export class World {
 		return null
 	}
 	giveItem(item, pos) {
-		this.items[pos.zone.name][pos.room.name].push(item)
+		this.getItems(pos.zone, pos.room).push(item)
 	}
 
 	getItemsByKey(commandData, pos) {
