@@ -1,0 +1,56 @@
+body {
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 14px;
+	color: lightgray;
+	background-color: black;
+}
+
+input {
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 14px;
+	background-color: black;
+	color: lightgray;
+	border: 1px solid #505050;
+}
+
+button {
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 14px;
+	background-color: black;
+	color: lightgray;
+	border: 1px solid #505050;
+}
+
+strong {
+	color: white;
+}
+
+.output-container {
+	max-height: 90vh;
+}
+
+.input-container {
+	max-height: 10vh;
+	width: 100%;
+}
+
+.input-container input[type="text"] {
+	width: 75%;
+}
+.input-container input[type="submit"] {
+	width: 20%;
+}
+
+.line {
+	display: block;
+}
+
+#output {
+	height: 90%;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+#submit {
+	max-width: 120px;
+}
