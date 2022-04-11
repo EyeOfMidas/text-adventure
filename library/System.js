@@ -38,7 +38,7 @@ export class System {
 
 	log() {
 		[...arguments].forEach(argument => {
-			this.print(JSON.stringify(argument))
+			this.print(`<pre>${JSON.stringify(argument, null, 2)}</pre>`)
 		})
 		this.println("")
 	}
