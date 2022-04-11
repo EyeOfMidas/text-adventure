@@ -98,7 +98,7 @@ export class WateringCan extends ItemCore {
 				system.println("")
 				return true
 			}
-			let targetItem = [...player.getItemsByKey(commandData[0]), ...world.getItemsByKey(commandData[0], player.getPosition())].filter((item) => item instanceof Garden.Items.Pansy)
+			let targetItem = system.getItemsByKey(commandData).filter((item) => item instanceof Garden.Items.Pansy)
 			if(targetItem.length == 1) {
 				system.println("You splash the few remaining droplets across the flower, reviving it slightly.")
 				targetItem[0].isRefreshed = true

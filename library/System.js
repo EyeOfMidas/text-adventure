@@ -105,6 +105,10 @@ export class System {
 		document.title = newTitle
 	}
 
+	getItemsByKey(commandData) {
+		return [...player.getItemsByKey(commandData), ...world.getItemsByKey(commandData, player.getPosition())]
+	}
+
 	actions(command, commandData) {
 		let playerInventory = player.getInventory()
 		switch (command) {

@@ -47,8 +47,8 @@ export class Player {
 		return this.playerInventory.includes(item)
 	}
 
-	getItemsByKey(itemKey) {
-		return this.playerInventory.filter((item) => item.keys.includes(itemKey))
+	getItemsByKey(commandData) {
+		return this.playerInventory.filter((item) => item.keys.includes(commandData[0]))
 	}
 }
 
