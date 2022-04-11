@@ -5,20 +5,12 @@ export class System {
 	constructor() {
 		this.outputDiv = window.document.getElementById("output")
 		this.inputField = window.document.getElementById("input")
-		this.submitButton = window.document.getElementById("submit")
+		this.form = window.document.getElementById("form")
 	}
 
 	init() {
-		this.submitButton.addEventListener('click', () => {
+		this.form.addEventListener("submit", (event) => {
 			this.parseInput()
-		}, false)
-
-		document.body.addEventListener("keyup", (event) => {
-			switch (event.key) {
-				case "Enter":
-					this.parseInput()
-					break;
-			}
 		}, false)
 
 		this.clear()
@@ -33,7 +25,8 @@ export class System {
 	}
 
 	println(message) {
-		this.print(message + "<br />\n")
+		if(message == "") {message  = "&nbsp;"}
+		this.print(`<div class="line">${message}</div>\n`)
 	}
 
 	log() {
