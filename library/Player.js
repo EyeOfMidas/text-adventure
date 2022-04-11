@@ -46,6 +46,10 @@ export class Player {
 	hasItem(item) {
 		return this.playerInventory.includes(item)
 	}
+
+	getItemsByKey(itemKey) {
+		return this.playerInventory.filter((item) => item.keys.includes(itemKey))
+	}
 }
 
 var player = new Player()

@@ -53,6 +53,29 @@ class Pansy extends ItemCore {
 			"a flower",
 			"You let the flower fall to the floor.",
 		)
+		this.isRefreshed = false
+	}
+
+	look(commandData) {
+		if (!commandData || commandData.length <= 0) {
+			if (this.isRefreshed) {
+				system.println("A cheerful looking pansy lays here.")
+			} else {
+				system.println(this.lookText)
+			}
+			return false
+		}
+		if (commandData.length > 0 && this.keys.includes(commandData[0])) {
+			if (this.isRefreshed) {
+				system.println("The small purple pansy glistens with moisture.")
+			} else {
+				system.println(this.lookAtText)
+			}
+			system.println("")
+			return true
+		}
+		
+		return false
 	}
 }
 
@@ -68,9 +91,21 @@ export class WateringCan extends ItemCore {
 		)
 	}
 
-	water() {
+	water(commandData) {
 		if(player.hasItem(this)) {
-			system.println("water what?")
+			if(!commandData || commandData.length == 0) {
+				system.println("water what?")
+				system.println("")
+				return true
+			}
+			let targetItem = [...player.getItemsByKey(commandData[0]), ...world.getItemsByKey(commandData[0], player.getPosition())].filter((item) => item instanceof Garden.Items.Pansy)
+			if(targetItem.length == 1) {
+				system.println("You splash the few remaining droplets across the flower, reviving it slightly.")
+				targetItem[0].isRefreshed = true
+			} else {
+				system.println(`This probably doesn't need to be watered.`)
+				
+			}
 			system.println("")
 			return true
 		}

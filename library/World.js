@@ -40,6 +40,10 @@ export class World {
 	giveItem(item, pos) {
 		this.items[pos.zone.name][pos.room.name].push(item)
 	}
+
+	getItemsByKey(itemKey, pos) {
+		return this.getItems(pos.zone, pos.room).filter((item) => item.keys.includes(itemKey))
+	}
 }
 
 var world = new World()
