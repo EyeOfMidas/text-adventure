@@ -1,4 +1,4 @@
-import { world, system, player, RoomCore, ItemCore } from "./library/Core.js"
+import { world, system, player, RoomCore, ItemCore } from "../library/Core.js"
 import OldHouse from "./oldhouse.js"
 
 class Patio extends RoomCore {
