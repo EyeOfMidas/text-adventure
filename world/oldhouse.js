@@ -3,12 +3,12 @@ import Garden from "./garden.js"
 
 class SunnyHallway extends RoomCore {
 	constructor() {
-		super(
-			"A Sunny Hallway",
-			"The sunlight streams in through the windows to the east, "+
-				"causing dust particles in the air to glimmer while drifting between the shafts of light.",
-			"The hall continues to the <strong>north</strong>. The great entry hall can be seen to the <strong>south</strong>.",
-		)
+		super()
+		super.setTitle("A Sunny Hallway")
+		super.setDescription("The sunlight streams in through the windows to the east,",
+		"causing dust particles in the air to glimmer while drifting between the shafts of light.")
+		super.setExits("The hall continues to the <strong>north</strong>. The great entry hall can be seen to the <strong>south</strong>.")
+	
 	}
 	north() {
 		system.println("You walk north.")
@@ -27,14 +27,14 @@ class SunnyHallway extends RoomCore {
 
 class DarkenedHallway extends RoomCore {
 	constructor() {
-		super(
-			"A darkened hallway",
-			"The heavy dark drapes over the eastern windows bring a sense of closeness to the hallway. "+
-				"The worn red carpet smells a little like mould.",
-			"The hallway looks brighter to the <strong>south</strong>. "+
-				"An open oak door to the <strong>east</strong> leads out into the garden. "+
-				"There is a large and well-lit room to the <strong>north</strong>.",
-		)
+		super()
+		super.setTitle("A darkened hallway")
+		super.setDescription("The heavy dark drapes over the eastern windows bring a sense of closeness to the hallway.",
+		"The worn red carpet smells a little like mould.")
+		super.setExits("The hallway looks brighter to the <strong>south</strong>.",
+		"An open oak door to the <strong>east</strong> leads out into the garden.",
+		"There is a large and well-lit room to the <strong>north</strong>.")
+	
 	}
 
 	south() {
@@ -60,12 +60,11 @@ class DarkenedHallway extends RoomCore {
 }
 class EntryHall extends RoomCore {
 	constructor() {
-		super(
-			"Entry Hall",
-			"The ceiling of the hall is vaulted, with the light streaming in through the stained glass windows "+
-				"casting colorful shadows across the ornate worn rug.",
-			"A hallway extends to the <strong>north</strong>. The door to the south does not look like it will open.",
-		)
+		super()
+		super.setTitle("Entry Hall")
+		super.setDescription("The ceiling of the hall is vaulted, with the light streaming in through the stained glass windows",
+		"casting colorful shadows across the ornate worn rug.")
+		super.setExits("A hallway extends to the <strong>north</strong>. The door to the south does not look like it will open.")
 	}
 
 	north() {
@@ -83,7 +82,7 @@ class EntryHall extends RoomCore {
 
 	look(commandData) {
 		if (["rug", "carpet"].includes(commandData[0])) {
-			system.println("The rug has an elaborate turkish pattern that is almost entirely faded out. "+
+			system.println("The rug has an elaborate turkish pattern that is almost entirely faded out.",
 			"A few threadbare patches barely hold together as a pale path down the center leads north down the hallway.")
 			system.println("")
 			return true
@@ -93,13 +92,12 @@ class EntryHall extends RoomCore {
 }
 class GrandBallroom extends RoomCore {
 	constructor() {
-		super(
-			"Grand Ballroom",
-			"The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom. "+
-				"In the center of the tremendous vaulted ceiling hangs an enormous crystal chandelier, "+
-				"casting sparkles of light across the ornately gilded walls.",
-			"A hallway extends beneath an archway to the <strong>south</strong>.",
-		)
+		super()
+		super.setTitle("Grand Ballroom")
+		super.setDescription("The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom.",
+		"In the center of the tremendous vaulted ceiling hangs an enormous crystal chandelier,",
+		"casting sparkles of light across the ornately gilded walls.")
+		super.setExits("A hallway extends beneath an archway to the <strong>south</strong>.")
 	}
 
 	south() {
@@ -110,8 +108,8 @@ class GrandBallroom extends RoomCore {
 	}
 
 	waltz() {
-		system.println("You twirl across the marble floors for a few moments, in time to an imagined string quartet. "+
-			"The exhilaration of spinning leaves you rosy-cheeked and breathless.")
+		system.println("You twirl across the marble floors for a few moments, in time to an imagined string quartet.",
+		"The exhilaration of spinning leaves you rosy-cheeked and breathless.")
 		system.println("")
 		return true
 	}
@@ -119,7 +117,8 @@ class GrandBallroom extends RoomCore {
 
 class Pearl extends ItemCore {
 	constructor() {
-		super(["pearl", "bead"])
+		super()
+		super.setKeys("pearl", "bead")
 		this.viewed = false
 	}
 
@@ -167,7 +166,7 @@ class Pearl extends ItemCore {
 	}
 
 	drop(commandData) {
-		if (this.keys.includes(commandData[0])) {
+		if (this.keys.includes(commandData[0]) && player.hasItem(this)) {
 			if (this.viewed) {
 				system.println("You drop the pearl, letting it bounce across the floor to a stop.")
 			} else {

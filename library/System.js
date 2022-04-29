@@ -20,12 +20,13 @@ export class System {
 		return this.inputField.value
 	}
 
-	print(message) {
-		this.outputDiv.innerHTML += message
+	print() {
+		this.outputDiv.innerHTML += [...arguments].join(" ")
 	}
 
-	println(message) {
-		if(message == "") {message  = "&nbsp;"}
+	println() {
+		let message = [...arguments].join(" ")
+		if(message == "") {message = "&nbsp;"}
 		this.print(`<div class="line">${message}</div>\n`)
 	}
 

@@ -3,13 +3,31 @@ import player from "./Player.js"
 import world from "./World.js"
 
 export default class ItemCore {
-    constructor(keys, lookText, lookAtText, takeText, heldText, dropText) {
+    constructor(keys = [], lookText = "", lookAtText = "", takeText = "", heldText = "", dropText = "") {
 		this.keys = keys
         this.lookText = lookText
         this.lookAtText = lookAtText
         this.takeText = takeText
         this.heldText = heldText
         this.dropText = dropText
+	}
+	setKeys(){
+		this.keys = [...arguments]
+	}
+	setLookText() {
+		this.lookText = [...arguments].join(" ")
+	}
+	setLookAtText() {
+		this.lookAtText = [...arguments].join(" ")
+	}
+	setTakeText() {
+		this.takeText = [...arguments].join(" ")
+	}
+	setHeldText() {
+		this.heldText = [...arguments].join(" ")
+	}
+	setDropText() {
+		this.dropText = [...arguments].join(" ")
 	}
 
 	actions(command, commandData) {
