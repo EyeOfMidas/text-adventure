@@ -105,6 +105,13 @@ export class System {
 	actions(command, commandData) {
 		let playerInventory = player.getInventory()
 		switch (command) {
+			case "look":
+				if(commandData.length > 0) {
+					this.println(`I don't see '${commandData[0]}'.`)
+					this.println("")
+					return true
+				}
+				return false
 			case "i":
 			case "inventory":
 				if (playerInventory.length <= 0) {
@@ -117,6 +124,7 @@ export class System {
 				}
 				system.println("")
 				return true
+			case "get":
 			case "take":
 				if(commandData.length > 0) {
 					this.println(`I don't see '${commandData[0]}' to take.`)

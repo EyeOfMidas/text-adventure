@@ -5,7 +5,8 @@ class SunnyHallway extends RoomCore {
 	constructor() {
 		super(
 			"A Sunny Hallway",
-			"The sunlight streams in through the windows to the east, causing dust particles in the air to glimmer while drifting between the shafts of light.",
+			"The sunlight streams in through the windows to the east, "+
+				"causing dust particles in the air to glimmer while drifting between the shafts of light.",
 			"The hall continues to the <strong>north</strong>. The great entry hall can be seen to the <strong>south</strong>.",
 		)
 	}
@@ -28,8 +29,11 @@ class DarkenedHallway extends RoomCore {
 	constructor() {
 		super(
 			"A darkened hallway",
-			"The heavy dark drapes over the eastern windows bring a sense of closeness to the hallway. The worn red carpet smells a little like mould.",
-			"The hallway looks brighter to the <strong>south</strong>. An open oak door to the <strong>east</strong> leads out into the garden. There is a large and well-lit room to the <strong>north</strong>.",
+			"The heavy dark drapes over the eastern windows bring a sense of closeness to the hallway. "+
+				"The worn red carpet smells a little like mould.",
+			"The hallway looks brighter to the <strong>south</strong>. "+
+				"An open oak door to the <strong>east</strong> leads out into the garden. "+
+				"There is a large and well-lit room to the <strong>north</strong>.",
 		)
 	}
 
@@ -58,7 +62,8 @@ class EntryHall extends RoomCore {
 	constructor() {
 		super(
 			"Entry Hall",
-			"The ceiling of the hall is vaulted, with the light streaming in through the stained glass windows casting colorful shadows across the worn carpet.",
+			"The ceiling of the hall is vaulted, with the light streaming in through the stained glass windows "+
+				"casting colorful shadows across the ornate worn rug.",
 			"A hallway extends to the <strong>north</strong>. The door to the south does not look like it will open.",
 		)
 	}
@@ -69,12 +74,30 @@ class EntryHall extends RoomCore {
 		player.setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
 		return true
 	}
+
+	south() {
+		system.println("You rattle the bronze door handle, but the solid oak door does not budge.")
+		system.println("")
+		return true
+	}
+
+	look(commandData) {
+		if (["rug", "carpet"].includes(commandData[0])) {
+			system.println("The rug has an elaborate turkish pattern that is almost entirely faded out. "+
+			"A few threadbare patches barely hold together as a pale path down the center leads north down the hallway.")
+			system.println("")
+			return true
+		}
+		return super.look(commandData)
+	}
 }
 class GrandBallroom extends RoomCore {
 	constructor() {
 		super(
 			"Grand Ballroom",
-			"The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom. In the center of the tremendous vaulted ceiling hangs an enormous crystal chandelier, casting sparkles of light across the ornately gilded walls.",
+			"The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom. "+
+				"In the center of the tremendous vaulted ceiling hangs an enormous crystal chandelier, "+
+				"casting sparkles of light across the ornately gilded walls.",
 			"A hallway extends beneath an archway to the <strong>south</strong>.",
 		)
 	}
@@ -87,7 +110,8 @@ class GrandBallroom extends RoomCore {
 	}
 
 	waltz() {
-		system.println("You twirl across the marble floors for a few moments, in time to an imagined string quartet. The exhilaration of spinning leaves you rosy-cheeked and breathless.")
+		system.println("You twirl across the marble floors for a few moments, in time to an imagined string quartet. "+
+			"The exhilaration of spinning leaves you rosy-cheeked and breathless.")
 		system.println("")
 		return true
 	}
