@@ -200,6 +200,10 @@ export class System {
 			"and sometimes do unique things, such as <strong>water flower</strong> or <strong>waltz</strong> based on what you have or where you are."
 		)
 		this.println("")
+		this.println(
+			"If you discover a mistake or encounter a crash, please make a <strong>bug</strong> report."
+		)
+		this.println("")
 		return true
 	}
 
@@ -232,6 +236,21 @@ export class System {
 				)
 				break
 		}
+		return true
+	}
+
+	bug(commandData) {
+		this.print("You stare off into the æther as you contemplate the faults of this world")
+		setTimeout(() => {this.print(".")}, 300)
+		setTimeout(() => {this.print(".")}, 900)
+		setTimeout(() => {this.print(".")}, 1500)
+		setTimeout(() => {this.print(".")}, 2100)
+		setTimeout(() => {this.print(".")}, 2700)
+		setTimeout(() => {this.println("")}, 3300)
+		setTimeout(() => {
+			window.open("https://github.com/EyeOfMidas/text-adventure/issues/new", "_blank")
+		}, 3300)
+		
 		return true
 	}
 
