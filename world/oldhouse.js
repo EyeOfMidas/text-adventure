@@ -1,6 +1,45 @@
 import { world, system, player, RoomCore, ItemCore } from "../library/Core.js"
 import Garden from "./garden.js"
 
+class EntryHall extends RoomCore {
+	constructor() {
+		super()
+		super.setTitle("Entry Hall")
+		super.setDescription("The ceiling of the hall is vaulted, with the light streaming in through the stained glass windows",
+		"casting colorful shadows across the ornate worn rug.")
+		super.setExits("A hallway extends to the <strong>north</strong>. The door to the south does not look like it will open.")
+	}
+
+	north() {
+		system.println("You walk north.")
+		system.println("")
+		player.setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
+		return true
+	}
+
+	south() {
+		system.println("You rattle the bronze door handle, but the solid oak door does not budge.")
+		system.println("")
+		return true
+	}
+
+	look(commandData) {
+		if (["rug", "carpet"].includes(commandData[0])) {
+			system.println("The rug has an elaborate turkish pattern that is almost entirely faded out.",
+			"A few threadbare patches barely hold together as a pale path down the center leads north down the hallway.")
+			system.println("")
+			return true
+		}
+		if (["stained", "glass", "window"].includes(commandData[0])) {
+			system.println("Light streaming in through the three colored glass windows depicts three flowers; ",
+			"a ruby and emerald rose, an amethyst and obsidian pansy and a quartz and topaz daisy.")
+			system.println("")
+			return true
+		}
+		return super.look(commandData)
+	}
+}
+
 class SunnyHallway extends RoomCore {
 	constructor() {
 		super()
@@ -57,39 +96,26 @@ class DarkenedHallway extends RoomCore {
 		player.setPosition(OldHouse, OldHouse.Rooms.GrandBallroom)
 		return true
 	}
-}
-class EntryHall extends RoomCore {
-	constructor() {
-		super()
-		super.setTitle("Entry Hall")
-		super.setDescription("The ceiling of the hall is vaulted, with the light streaming in through the stained glass windows",
-		"casting colorful shadows across the ornate worn rug.")
-		super.setExits("A hallway extends to the <strong>north</strong>. The door to the south does not look like it will open.")
-	}
 
-	north() {
-		system.println("You walk north.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
-		return true
-	}
-
-	south() {
-		system.println("You rattle the bronze door handle, but the solid oak door does not budge.")
-		system.println("")
-		return true
+	open(commandData) {
+		if (["drapes", "curtains"].includes(commandData[0])) {
+			system.println("You open the drapes")
+			system.println("")
+			return true
+		}
 	}
 
 	look(commandData) {
-		if (["rug", "carpet"].includes(commandData[0])) {
-			system.println("The rug has an elaborate turkish pattern that is almost entirely faded out.",
-			"A few threadbare patches barely hold together as a pale path down the center leads north down the hallway.")
+		if (["drapes", "curtains"].includes(commandData[0])) {
+			system.println("The heavy felt drapes block most of the cheery yellow sunlight creeping around the edges.",
+			"A gray layer of dust makes the rich green fabric a dingy shade.")
 			system.println("")
 			return true
 		}
 		return super.look(commandData)
 	}
 }
+
 class GrandBallroom extends RoomCore {
 	constructor() {
 		super()
@@ -105,6 +131,15 @@ class GrandBallroom extends RoomCore {
 		system.println("")
 		player.setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
 		return true
+	}
+
+	look(commandData) {
+		if (["crystal", "chandelier"].includes(commandData[0])) {
+			system.println("Multitudinous crystal shards gently swing high above, flashing tiny flecks of rainbow light across the walls and floors.")
+			system.println("")
+			return true
+		}
+		return super.look(commandData)
 	}
 
 	waltz() {
@@ -182,9 +217,9 @@ class Pearl extends ItemCore {
 }
 export default class OldHouse {
 	static Rooms = {
+		EntryHall,
 		SunnyHallway,
 		DarkenedHallway,
-		EntryHall,
 		GrandBallroom,
 	}
 	static Items = {

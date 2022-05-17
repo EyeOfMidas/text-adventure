@@ -144,6 +144,24 @@ export class System {
 				this.println(`drop what?`)
 				this.println("")
 				return true
+			case "open":
+				if(commandData.length > 0) {
+					this.println(`I can't open '${commandData[0]}'`)
+					this.println("")
+					return true
+				}
+				this.println(`open what?`)
+				this.println("")
+				return true
+			case "close":
+				if(commandData.length > 0) {
+					this.println(`I can't close '${commandData[0]}'`)
+					this.println("")
+					return true
+				}
+				this.println(`close what?`)
+				this.println("")
+				return true
 			case "help":
 				this.println("This game is played by typing simple commands to describe what you want to do.")
 				this.println("If you want to see a room, type <strong>look</strong>. You can examine items by typing <strong>look [item]</strong>.")
