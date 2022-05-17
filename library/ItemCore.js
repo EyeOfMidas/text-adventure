@@ -1,15 +1,22 @@
 import { system, player, world } from "./Core.js"
 
 export default class ItemCore {
-    constructor(keys = [], lookText = "", lookAtText = "", takeText = "", heldText = "", dropText = "") {
+	constructor(
+		keys = [],
+		lookText = "",
+		lookAtText = "",
+		takeText = "",
+		heldText = "",
+		dropText = ""
+	) {
 		this.keys = keys
-        this.lookText = lookText
-        this.lookAtText = lookAtText
-        this.takeText = takeText
-        this.heldText = heldText
-        this.dropText = dropText
+		this.lookText = lookText
+		this.lookAtText = lookAtText
+		this.takeText = takeText
+		this.heldText = heldText
+		this.dropText = dropText
 	}
-	setKeys(){
+	setKeys() {
 		this.keys = [...arguments]
 	}
 	setLookText() {
@@ -29,14 +36,19 @@ export default class ItemCore {
 	}
 
 	actions(command, commandData) {
-		if (typeof (this[command]) == "function") {
+		if (command in this) {
 			return this[command](commandData)
 		}
 		return false
 	}
 
+	held() {
+		system.println(this.heldText)
+		return false
+	}
+
 	look(commandData) {
-		if(!commandData || commandData.length <= 0) {
+		if (!commandData || commandData.length <= 0) {
 			system.println(this.lookText)
 			return false
 		}
@@ -47,8 +59,6 @@ export default class ItemCore {
 		}
 	}
 
-	l = this.look
-
 	take(commandData) {
 		if (this.keys.includes(commandData[0])) {
 			system.println(this.takeText)
@@ -57,13 +67,6 @@ export default class ItemCore {
 			player.giveItem(item)
 			return true
 		}
-		return false
-	}
-
-    get = this.take
-
-	held() {
-		system.println(this.heldText)
 		return false
 	}
 
@@ -77,4 +80,7 @@ export default class ItemCore {
 		}
 		return false
 	}
+
+	l = this.look
+	get = this.take
 }

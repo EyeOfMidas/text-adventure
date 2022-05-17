@@ -6,11 +6,11 @@ export class Player {
 		this.currentRoom = null
 		this.playerInventory = []
 	}
-	
+
 	getPosition() {
 		return {
 			zone: this.currentZone,
-			room: this.currentRoom
+			room: this.currentRoom,
 		}
 	}
 
@@ -47,7 +47,9 @@ export class Player {
 	}
 
 	getItemsByKey(commandData) {
-		return this.playerInventory.filter((item) => item.keys.includes(commandData[0]))
+		return this.playerInventory.filter((item) =>
+			item.keys.includes(commandData[0])
+		)
 	}
 }
 

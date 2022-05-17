@@ -1,5 +1,5 @@
-export { default as ItemCore } from './ItemCore.js'
-export { default as RoomCore } from './RoomCore.js'
-export { default as system } from './System.js'
-export { default as player } from './Player.js'
-export { default as world } from './World.js'
+export { default as ItemCore } from "./ItemCore.js"
+export { default as RoomCore } from "./RoomCore.js"
+export { default as system } from "./System.js"
+export { default as player } from "./Player.js"
+export { default as world } from "./World.js"

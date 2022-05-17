@@ -7,7 +7,7 @@ export class World {
 	addZone(zone, zoneData) {
 		this.roomObjs[zone.name] = []
 		this.items[zone.name] = []
-		zoneData.forEach(roomClass => {
+		zoneData.forEach((roomClass) => {
 			this.roomObjs[zone.name][roomClass.name] = new roomClass()
 			this.items[zone.name][roomClass.name] = []
 		})
@@ -18,7 +18,7 @@ export class World {
 	}
 
 	addItems(zone, room, roomItems) {
-		roomItems.forEach(itemClass => {
+		roomItems.forEach((itemClass) => {
 			this.items[zone.name][room.name].push(new itemClass())
 		})
 	}
@@ -42,7 +42,9 @@ export class World {
 	}
 
 	getItemsByKey(commandData, pos) {
-		return this.getItems(pos.zone, pos.room).filter((item) => item.keys.includes(commandData[0]))
+		return this.getItems(pos.zone, pos.room).filter((item) =>
+			item.keys.includes(commandData[0])
+		)
 	}
 }
 
