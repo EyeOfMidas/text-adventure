@@ -1,4 +1,4 @@
-import system from "./System.js";
+import { system } from "./Core.js"
 
 export default class RoomCore {
   constructor(title = "", description = "", exitsDescription = "") {

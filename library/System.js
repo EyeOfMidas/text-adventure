@@ -1,5 +1,4 @@
-import player from "./Player.js"
-import world from "./World.js"
+import { player, world } from "./Core.js"
 
 export class System {
 	constructor() {
@@ -166,7 +165,8 @@ export class System {
 				this.println("This game is played by typing simple commands to describe what you want to do.")
 				this.println("If you want to see a room, type <strong>look</strong>. You can examine items by typing <strong>look [item]</strong>.")
 				this.println("You can travel around by typing directions such as <strong>north</strong> or <strong>s</strong> (for south).")
-				this.println("Most other actions can be done if they're in context. You can <strong>take</strong> and <strong>drop</strong> items, and sometimes do unique things, such as <strong>water flower</strong> or <strong>waltz</strong> based on what you have or where you are.")
+				this.println("Most other actions can be done if they're in context. You can <strong>take</strong> and <strong>drop</strong> items,",
+				"and sometimes do unique things, such as <strong>water flower</strong> or <strong>waltz</strong> based on what you have or where you are.")
 				this.println("")
 				return true
 			case "debug":

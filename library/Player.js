@@ -1,5 +1,4 @@
-import world from "./World.js"
-import system from "./System.js"
+import { system, world } from "./Core.js"
 
 export class Player {
 	constructor() {

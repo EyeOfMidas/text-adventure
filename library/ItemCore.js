@@ -1,6 +1,4 @@
-import system from "./System.js"
-import player from "./Player.js"
-import world from "./World.js"
+import { system, player, world } from "./Core.js"
 
 export default class ItemCore {
     constructor(keys = [], lookText = "", lookAtText = "", takeText = "", heldText = "", dropText = "") {
