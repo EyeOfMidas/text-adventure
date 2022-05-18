@@ -20,14 +20,6 @@ input {
 	border: 1px solid #505050;
 }
 
-button {
-	font-family: "Lucida Console", Monaco, monospace;
-	font-size: 14px;
-	background-color: black;
-	color: lightgray;
-	border: 1px solid #505050;
-}
-
 strong {
 	color: white;
 }
@@ -49,10 +41,29 @@ strong {
 
 .input-container input[type="text"] {
 	width: calc(100vw - 160px);
-	min-width: 200px
+	min-width: 200px;
+	transition: 0.5s;
 }
+
+.input-container input[type="text"]:focus {
+	outline: none;
+	border-color: lightgray;
+    box-shadow: 0 0 10px lightgray;
+	transition: 0.5s;
+}
+
 .input-container input[type="submit"] {
 	width: 120px;
+	transition: 0.5s;
+}
+
+.input-container input[type="submit"]:hover {
+	background-color: lightgray;
+	color: black;
+	cursor: pointer;
+	border-color: lightgray;
+    box-shadow: 0 0 10px lightgray;
+	transition: 0.5s;
 }
 
 .line {
