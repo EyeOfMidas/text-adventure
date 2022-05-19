@@ -99,7 +99,7 @@ class DarkenedHallway extends RoomCore {
 
 	open(commandData) {
 		if (["drapes", "curtains"].includes(commandData[0])) {
-			system.println("You open the drapes")
+			system.println("You tug on the drapes in an attempt to open them, but they seem affixed to a metal box on the floor.")
 			system.println("")
 			return true
 		}
@@ -112,6 +112,13 @@ class DarkenedHallway extends RoomCore {
 			system.println("")
 			return true
 		}
+		if (["metal", "box", "lock"].includes(commandData[0])) {
+			system.println("The metal box is bolted to the floor, but has a strange round keyhole on the front.",
+			"Each corner of the drapes has a rust-flecked metal loop that is held in place by a latch mechanism on the box.",
+			"No amount of tugging will free the drapes enough to open them.")
+			system.println("")
+			return true
+		}
 		return super.look(commandData)
 	}
 }
@@ -120,10 +127,13 @@ class GrandBallroom extends RoomCore {
 	constructor() {
 		super()
 		super.setTitle("Grand Ballroom")
-		super.setDescription("The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom.",
+		this.startingDescription = ["The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom.",
 		"In the center of the tremendous vaulted ceiling hangs an enormous crystal chandelier,",
-		"casting sparkles of light across the ornately gilded walls.")
+		"casting sparkles of light across the ornately gilded walls."]
+		super.setDescription(...this.startingDescription)
 		super.setExits("A hallway extends beneath an archway to the <strong>south</strong>.")
+		this.panelIsOpen = false
+		
 	}
 
 	south() {
@@ -133,9 +143,36 @@ class GrandBallroom extends RoomCore {
 		return true
 	}
 
+	press(commandData) {
+		if (["panel", "metal", "right"].includes(commandData[0])) {
+			if(this.panelIsOpen) {
+				system.println("Carefully closing the panel and pressing it back into place, a simple click holds the metal panel closed and disguised again.")
+				system.println("")
+				super.setDescription(...this.startingDescription)
+				this.panelIsOpen = false
+				return true
+			}
+			system.println("Pressing on the panel causes an audible click from within the wall. The panel swings open revealing a strange round keyhole.")
+			system.println("")
+			super.setDescription(...this.startingDescription, "A small metal panel is hanging open on the eastern wall.")
+			this.panelIsOpen = true
+			return true
+		}
+		system.println("Press what?")
+		system.println("")
+		return true
+	}
+
 	look(commandData) {
 		if (["crystal", "chandelier"].includes(commandData[0])) {
-			system.println("Multitudinous crystal shards gently swing high above, flashing tiny flecks of rainbow light across the walls and floors.")
+			system.println("Multitudinous crystal shards gently swing high above, flashing tiny flecks of rainbow light across the walls and floors.",
+			"One bright spot hits a metallic object on the eastern wall which glints brightly.")
+			system.println("")
+			return true
+		}
+		if (["metallic", "object", "glint"].includes(commandData[0])) {
+			system.println("A metal panel is disguised on the wall here between some flowery scrollwork, flecked with rust.",
+			"The right edge of the panel looks well worn from many firm presses.")
 			system.println("")
 			return true
 		}
