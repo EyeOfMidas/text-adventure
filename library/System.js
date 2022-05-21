@@ -200,6 +200,16 @@ export class System {
 		}
 
 		switch(commandData[0]) {
+			case "settings":
+			case "setting":
+				this.println(`Settings are changed by typing <strong>setting [setting name] [value].`)
+				this.println(`Available settings are:`)
+				this.println("")
+				this.println(`zipmode (true/false) - after having visited a room, no longer show it's description when entering again.`)
+				this.println("")
+				this.println(`hintmode (true/false) - important features of the room are given a unique text appearance.`)
+				this.println("")
+				return true
 			default:
 				this.println(`I don't have specific help for '${commandData[0]}'`)
 				this.println("")

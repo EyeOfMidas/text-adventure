@@ -143,6 +143,24 @@ class GrandBallroom extends RoomCore {
 		return true
 	}
 
+	close(commandData) {
+		if (["panel", "metal"].includes(commandData[0])) {
+			if(this.panelIsOpen) {
+				system.println("Carefully closing the panel and pressing it back into place, a simple click holds the metal panel closed and disguised again.")
+				system.println("")
+				super.setDescription(...this.startingDescription)
+				this.panelIsOpen = false
+				return true
+			}
+			system.println("The panel is already closed.")
+			system.println("")
+			return true
+		}
+		system.println("Close what?")
+		system.println("")
+		return true
+	}
+
 	press(commandData) {
 		if (["panel", "metal", "right"].includes(commandData[0])) {
 			if(this.panelIsOpen) {
@@ -154,7 +172,7 @@ class GrandBallroom extends RoomCore {
 			}
 			system.println("Pressing on the panel causes an audible click from within the wall. The panel swings open revealing a strange round keyhole.")
 			system.println("")
-			super.setDescription(...this.startingDescription, "A small metal panel is hanging open on the eastern wall.")
+			super.setDescription(...this.startingDescription, `A small <span class="hint">metal panel</span> is hanging open on the eastern wall.`)
 			this.panelIsOpen = true
 			return true
 		}
@@ -171,6 +189,11 @@ class GrandBallroom extends RoomCore {
 			return true
 		}
 		if (["metallic", "object", "glint", "panel"].includes(commandData[0])) {
+			if(this.panelIsOpen) {
+				system.println("Behind the panel is a strange round keyhole.")
+				system.println("")
+				return true
+			}
 			system.println(`A metal <span class="hint">panel</span> is disguised on the wall here between some flowery scrollwork, flecked with rust.`,
 			`The right edge of the panel looks well worn from many firm <span class="hint">press</span>es.`)
 			system.println("")
