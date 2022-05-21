@@ -5,8 +5,8 @@ class EntryHall extends RoomCore {
 	constructor() {
 		super()
 		super.setTitle("Entry Hall")
-		super.setDescription("The ceiling of the hall is vaulted, with the light streaming in through the stained glass windows",
-		"casting colorful shadows across the ornate worn rug.")
+		super.setDescription(`The ceiling of the hall is vaulted, with the light streaming in through the <span class="hint">stained glass windows</span>`,
+		`casting colorful shadows across the ornate worn <span class="hint">rug</span>.`)
 		super.setExits("A hallway extends to the <strong>north</strong>. The door to the south does not look like it will open.")
 	}
 

@@ -23,6 +23,10 @@ input {
 strong {
 	color: white;
 }
+
+.hint{
+	display: inline;
+}
 .main-container {
 	display: flex;
 	flex-direction: column;

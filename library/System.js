@@ -216,6 +216,13 @@ export class System {
 				case "hintmode":
 					this.settings.hintmode = (commandData[1] === 'true')
 					this.println(`Setting hintmode to ${this.settings.hintmode}`)
+					if(this.settings.hintmode) {
+						this.hintStyle = document.createElement('style');
+						this.hintStyle.innerHTML = ".hint { color: magenta; }"
+						document.head.appendChild(this.hintStyle)
+					} else {
+						document.head.removeChild(this.hintStyle)
+					}
 					break
 			default:
 				this.println(`I'm sorry, '${commandData[0]}' is not a setting I recognize.`)
