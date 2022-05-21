@@ -5,17 +5,14 @@ export class System {
 		this.outputDiv = window.document.getElementById("output")
 		this.inputField = window.document.getElementById("input")
 		this.form = window.document.getElementById("form")
+		this.settings = {
+			zipmode: false,
+			hintmode: false,
+		}
 	}
 
 	init() {
-		this.form.addEventListener(
-			"submit",
-			(event) => {
-				this.parseInput()
-			},
-			false
-		)
-
+		this.form.addEventListener("submit", () => { this.parseInput() }, false)
 		this.clear()
 	}
 
@@ -186,23 +183,46 @@ export class System {
 	}
 
 	help(commandData) {
-		this.println(
-			"This game is played by typing simple commands to describe what you want to do."
-		)
-		this.println(
-			"If you want to see a room, type <strong>look</strong>. You can examine items by typing <strong>look [item]</strong>."
-		)
-		this.println(
-			"You can travel around by typing directions such as <strong>north</strong> or <strong>s</strong> (for south)."
-		)
-		this.println(
-			"Most other actions can be done if they're in context. You can <strong>take</strong> and <strong>drop</strong> items,",
-			"and sometimes do unique things, such as <strong>water flower</strong> or <strong>waltz</strong> based on what you have or where you are."
-		)
-		this.println("")
-		this.println(
-			"If you discover a mistake or encounter a crash, please make a <strong>bug</strong> report."
-		)
+		if(commandData.length == 0) {
+			this.println("This game is played by typing simple commands to describe what you want to do.")
+			this.println("If you want to see a room, type <strong>look</strong>. You can examine items by typing <strong>look [item]</strong>.")
+			this.println("You can travel around by typing directions such as <strong>north</strong> or <strong>s</strong> (for south).")
+			this.println(
+				"Most other actions can be done if they're in context. You can <strong>take</strong> and <strong>drop</strong> items,",
+				"and sometimes do unique things, such as <strong>water flower</strong> or <strong>waltz</strong> based on what you have or where you are."
+			)
+			this.println("")
+			this.println(
+				"If you discover a mistake or encounter a crash, please make a <strong>bug</strong> report."
+			)
+			this.println("")
+			return true
+		}
+
+		switch(commandData[0]) {
+			default:
+				this.println(`I don't have specific help for '${commandData[0]}'`)
+				this.println("")
+				return true
+		}
+	}
+
+	setting(commandData) {
+		switch(commandData[0]) {
+			case "zipmode":
+				this.settings.zipmode = (commandData[1] === 'true')
+				this.println(`Setting zipmode to ${this.settings.zipmode}`)
+				break
+				case "hintmode":
+					this.settings.hintmode = (commandData[1] === 'true')
+					this.println(`Setting hintmode to ${this.settings.hintmode}`)
+					break
+			default:
+				this.println(`I'm sorry, '${commandData[0]}' is not a setting I recognize.`)
+				this.println("")
+				return true
+		}
+		
 		this.println("")
 		return true
 	}
@@ -241,16 +261,16 @@ export class System {
 
 	bug(commandData) {
 		this.print("You stare off into the æther as you contemplate the faults of this world")
-		setTimeout(() => {this.print(".")}, 300)
-		setTimeout(() => {this.print(".")}, 900)
-		setTimeout(() => {this.print(".")}, 1500)
-		setTimeout(() => {this.print(".")}, 2100)
-		setTimeout(() => {this.print(".")}, 2700)
-		setTimeout(() => {this.println("")}, 3300)
+		setTimeout(() => { this.print(".") }, 300)
+		setTimeout(() => { this.print(".") }, 900)
+		setTimeout(() => { this.print(".") }, 1500)
+		setTimeout(() => { this.print(".") }, 2100)
+		setTimeout(() => { this.print(".") }, 2700)
+		setTimeout(() => { this.println("") }, 3300)
 		setTimeout(() => {
 			window.open("https://github.com/EyeOfMidas/text-adventure/issues/new", "_blank")
 		}, 3300)
-		
+
 		return true
 	}
 
