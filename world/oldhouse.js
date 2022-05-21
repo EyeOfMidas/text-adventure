@@ -68,7 +68,7 @@ class DarkenedHallway extends RoomCore {
 	constructor() {
 		super()
 		super.setTitle("A darkened hallway")
-		super.setDescription("The heavy dark drapes over the eastern windows bring a sense of closeness to the hallway.",
+		super.setDescription(`The heavy dark <span class="hint">drapes</span> over the eastern windows bring a sense of closeness to the hallway.`,
 		"The worn red carpet smells a little like mould.")
 		super.setExits("The hallway looks brighter to the <strong>south</strong>.",
 		"An open oak door to the <strong>east</strong> leads out into the garden.",
@@ -99,7 +99,7 @@ class DarkenedHallway extends RoomCore {
 
 	open(commandData) {
 		if (["drapes", "curtains"].includes(commandData[0])) {
-			system.println("You tug on the drapes in an attempt to open them, but they seem affixed to a metal box on the floor.")
+			system.println(`You tug on the drapes in an attempt to open them, but they seem affixed to a <span class="hint">metal box</span> on the floor.`)
 			system.println("")
 			return true
 		}
@@ -128,7 +128,7 @@ class GrandBallroom extends RoomCore {
 		super()
 		super.setTitle("Grand Ballroom")
 		this.startingDescription = ["The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom.",
-		"In the center of the tremendous vaulted ceiling hangs an enormous crystal chandelier,",
+		`In the center of the tremendous vaulted ceiling hangs an enormous <span class="hint">crystal chandelier</span>,`,
 		"casting sparkles of light across the ornately gilded walls."]
 		super.setDescription(...this.startingDescription)
 		super.setExits("A hallway extends beneath an archway to the <strong>south</strong>.")
@@ -166,13 +166,13 @@ class GrandBallroom extends RoomCore {
 	look(commandData) {
 		if (["crystal", "chandelier"].includes(commandData[0])) {
 			system.println("Multitudinous crystal shards gently swing high above, flashing tiny flecks of rainbow light across the walls and floors.",
-			"One bright spot hits a metallic object on the eastern wall which glints brightly.")
+			`One bright spot hits a <span class="hint">metallic object</span> on the eastern wall which glints brightly.`)
 			system.println("")
 			return true
 		}
-		if (["metallic", "object", "glint"].includes(commandData[0])) {
-			system.println("A metal panel is disguised on the wall here between some flowery scrollwork, flecked with rust.",
-			"The right edge of the panel looks well worn from many firm presses.")
+		if (["metallic", "object", "glint", "panel"].includes(commandData[0])) {
+			system.println(`A metal <span class="hint">panel</span> is disguised on the wall here between some flowery scrollwork, flecked with rust.`,
+			`The right edge of the panel looks well worn from many firm <span class="hint">press</span>es.`)
 			system.println("")
 			return true
 		}
@@ -197,9 +197,9 @@ class Pearl extends ItemCore {
 	look(commandData) {
 		if (!commandData || commandData.length <= 0) {
 			if (this.viewed) {
-				system.println("A perfect white pearl sits on the floor.")
+				system.println(`A perfect white <span class="hint">pearl</span> sits on the floor.`)
 			} else {
-				system.println("A tiny white bead sits on the floor.")
+				system.println(`A tiny white <span class="hint">bead</span> sits on the floor.`)
 			}
 			return false
 		}

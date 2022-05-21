@@ -47,7 +47,7 @@ class Pansy extends ItemCore {
 	constructor() {
 		super(
 			["flower", "pansy"],
-			"A small flower wilts on the ground.",
+			`A small <span class="hint">flower</span> wilts on the ground.`,
 			"The small purple pansy looks limp.",
 			"You carefully put the flower in your pocket.",
 			"a flower",
@@ -59,7 +59,7 @@ class Pansy extends ItemCore {
 	look(commandData) {
 		if (!commandData || commandData.length <= 0) {
 			if (this.isRefreshed) {
-				system.println("A cheerful looking pansy lays here.")
+				system.println(`A cheerful looking <span class="hint">pansy</span> lays here.`)
 			} else {
 				system.println(this.lookText)
 			}
@@ -83,8 +83,8 @@ export class WateringCan extends ItemCore {
 	constructor() {
 		super(
 			["can", "watering"],
-			"A rusted iron watering can stands on the ground.",
-			"The watering can still has a little bit of water in it.",
+			`A rusted iron <span class="hint">watering can</span> stands on the ground.`,
+			`The watering can still has a little bit of <span class="hint">water</span> in it.`,
 			"You heft the watering can.",
 			"a watering can",
 			"You place the watering can on the ground.",
