@@ -78,7 +78,7 @@ class DarkenedHallway extends RoomCore {
 		super()
 		super.setTitle("A darkened hallway")
 		super.setDescription(`The heavy dark <span class="hint">drapes</span> over the eastern windows bring a sense of closeness to the hallway.`,
-		"The worn red carpet smells a little like mould.")
+		"The worn red rug smells a little like mold.")
 		super.setExits("The hallway looks brighter to the <strong>south</strong>.",
 		"An open oak door to the <strong>east</strong> leads out into the garden.",
 		"There is a large and well-lit room to the <strong>north</strong>.")
