@@ -46,7 +46,9 @@ class SunnyHallway extends RoomCore {
 		super.setTitle("A Sunny Hallway")
 		super.setDescription("The sunlight streams in through the windows to the east,",
 		"causing dust particles in the air to glimmer while drifting between the shafts of light.")
-		super.setExits("The hall continues to the <strong>north</strong>. The great entry hall can be seen to the <strong>south</strong>.")
+		super.setExits("The hall continues to the <strong>north</strong>.",
+		"The great entry hall can be seen to the <strong>south</strong>.",
+		"There is an open doorway to the <strong>west</strong>.")
 	
 	}
 	north() {
@@ -60,6 +62,13 @@ class SunnyHallway extends RoomCore {
 		system.println("You walk south.")
 		system.println("")
 		player.setPosition(OldHouse, OldHouse.Rooms.EntryHall)
+		return true
+	}
+
+	west() {
+		system.println("You walk west.")
+		system.println("")
+		player.setPosition(OldHouse, OldHouse.Rooms.LibraryEntrance)
 		return true
 	}
 }
@@ -210,6 +219,58 @@ class GrandBallroom extends RoomCore {
 	}
 }
 
+class LibraryEntrance extends RoomCore {
+	constructor() {
+		super()
+		super.setTitle("The Gallery Hall")
+		super.setDescription("Footsteps echo on the polished hardwood floors down the narrow hallway.",
+		"The paneled walls are a faded white, decorated with large portraits of stuffy, pompous old men.")
+		super.setExits("A bright hallway can be seen to the <strong>east</strong>. A large room is just visible through an arched doorway to the <strong>west</strong>.")
+	
+	}
+	west() {
+		system.println("You walk west through the arched doorway.")
+		system.println("")
+		player.setPosition(OldHouse, OldHouse.Rooms.LibraryMainFloor)
+		return true
+	}
+
+	east() {
+		system.println("You walk east into the bright hallway.")
+		system.println("")
+		player.setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
+		return true
+	}
+}
+
+class LibraryMainFloor extends RoomCore {
+	constructor() {
+		super()
+		super.setTitle("The Library")
+		super.setDescription("A black iron spiral staircase twists up from the center of the room, leading up to a wrought-iron metal catwalk.",
+		"A large, two-story window is bordered by vibrant green felt drapes on the northern wall, providing ample reading light for the myriad of books crammed on the shelves which take up every spare wall space.",
+		"The smell of vanilla and worn leather permeates the air, and one of the dark-brown leather armchairs is nearly irresistibly summoning you to grab a book and sink down into it's embrace.")
+		super.setExits("There is a spiral staircase leading <strong>up</strong>, and an arched doorway off to the <strong>east</strong>.")
+	
+	}
+	up() {
+		system.println("Your footsteps reverberate as you climb the spiral staircase.")
+		system.println("")
+		// player.setPosition(OldHouse, OldHouse.Rooms.LibraryFirstBalcony)
+		system.println("Not yet implemented.")
+		return true
+	}
+
+	east() {
+		system.println("You walk east.")
+		system.println("")
+		player.setPosition(OldHouse, OldHouse.Rooms.LibraryEntrance)
+		return true
+	}
+
+	u = this.up
+}
+
 class Pearl extends ItemCore {
 	constructor() {
 		super()
@@ -281,6 +342,8 @@ export default class OldHouse {
 		SunnyHallway,
 		DarkenedHallway,
 		GrandBallroom,
+		LibraryEntrance,
+		LibraryMainFloor,
 	}
 	static Items = {
 		Pearl,
