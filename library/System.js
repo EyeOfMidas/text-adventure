@@ -99,7 +99,7 @@ export class System {
 		return false
 	}
 
-	setTitle(newTitle) {
+	_setTitle(newTitle) {
 		document.title = newTitle
 	}
 

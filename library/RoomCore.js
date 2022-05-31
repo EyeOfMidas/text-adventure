@@ -26,7 +26,7 @@ export default class RoomCore {
 	}
 
 	_enter() {
-		system.setTitle(this.title)
+		system._setTitle(this.title)
 		system._println(`<strong>${this.title}</strong>`)
 		if (!(this.visited && system._settings.zipmode)) {
 			system._println(this.description)
