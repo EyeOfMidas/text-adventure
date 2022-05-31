@@ -128,14 +128,13 @@ class Pansy extends ItemCore {
 
 class MapleSeed extends ItemCore {
 	constructor() {
-		super(
-			["maple", "seed"],
-			`A <span class="hint">maple seed</span> lies on the ground.`,
-			"The rich red maple seed looks like the wing of a delicate insect, ready to soar at any moment.",
-			"You gingerly put the seed in your inventory.",
-			"a maple seed",
-			"The seed spins madly as it gently drifts to the floor.",
-		)
+		super()
+		super.setKeys("maple", "seed")
+		super.setLookText(`A <span class="hint">maple seed</span> lies on the ground.`)
+		super.setLookAtText("The rich red maple seed looks like the wing of a delicate insect, ready to soar at any moment.")
+		super.setTakeText("You gingerly put the seed in your inventory.")
+		super.setHeldText("a maple seed")
+		super.setDropText("The seed spins madly as it gently drifts to the floor.")
 	}
 }
 
