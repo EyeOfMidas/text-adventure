@@ -8,67 +8,67 @@ export default class RoomCore {
 		this.visited = false
 	}
 
-	setTitle() {
+	_setTitle() {
 		this.title = [...arguments].join(" ")
 	}
-	setDescription() {
+	_setDescription() {
 		this.description = [...arguments].join(" ")
 	}
-	setExits() {
+	_setExits() {
 		this.exitsDescription = [...arguments].join(" ")
 	}
 
-	actions(command, commandData) {
+	_actions(command, commandData) {
 		if (command in this) {
 			return this[command](commandData)
 		}
 		return false
 	}
 
-	enter() {
-		system.title(this.title)
-		system.println(`<strong>${this.title}</strong>`)
-		if (!(this.visited && system.settings.zipmode)) {
-			system.println(this.description)
-			system.println(this.exitsDescription)
+	_enter() {
+		system.setTitle(this.title)
+		system._println(`<strong>${this.title}</strong>`)
+		if (!(this.visited && system._settings.zipmode)) {
+			system._println(this.description)
+			system._println(this.exitsDescription)
 			this.visited = true
 		}
 	}
 
 	look(commandData) {
 		if (commandData.length <= 0) {
-			system.println("You look around.")
-			system.println("")
-			system.println(this.description)
-			system.println(this.exitsDescription)
-			system.printRoomItems()
-			system.println("")
+			system._println("You look around.")
+			system._println("")
+			system._println(this.description)
+			system._println(this.exitsDescription)
+			system._printRoomItems()
+			system._println("")
 			return true
 		}
 		return false
 	}
 
 	north() {
-		system.println("I can't go north.")
-		system.println("")
+		system._println("I can't go north.")
+		system._println("")
 		return true
 	}
 
 	south() {
-		system.println("I can't go south.")
-		system.println("")
+		system._println("I can't go south.")
+		system._println("")
 		return true
 	}
 
 	east() {
-		system.println("I can't go east.")
-		system.println("")
+		system._println("I can't go east.")
+		system._println("")
 		return true
 	}
 
 	west() {
-		system.println("I can't go west.")
-		system.println("")
+		system._println("I can't go west.")
+		system._println("")
 		return true
 	}
 

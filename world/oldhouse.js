@@ -4,36 +4,36 @@ import Garden from "./garden.js"
 class EntryHall extends RoomCore {
 	constructor() {
 		super()
-		super.setTitle("Entry Hall")
-		super.setDescription(`The ceiling of the hall is vaulted, with the light streaming in through the <span class="hint">stained glass windows</span>`,
+		super._setTitle("Entry Hall")
+		super._setDescription(`The ceiling of the hall is vaulted, with the light streaming in through the <span class="hint">stained glass windows</span>`,
 		`casting colorful shadows across the ornate worn <span class="hint">rug</span>.`)
-		super.setExits("A hallway extends to the <strong>north</strong>. The door to the south does not look like it will open.")
+		super._setExits("A hallway extends to the <strong>north</strong>. The door to the south does not look like it will open.")
 	}
 
 	north() {
-		system.println("You walk north.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
+		system._println("You walk north.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
 		return true
 	}
 
 	south() {
-		system.println("You rattle the bronze door handle, but the solid oak door does not budge.")
-		system.println("")
+		system._println("You rattle the bronze door handle, but the solid oak door does not budge.")
+		system._println("")
 		return true
 	}
 
 	look(commandData) {
 		if (["rug", "carpet"].includes(commandData[0])) {
-			system.println("The rug has an elaborate turkish pattern that is almost entirely faded out.",
+			system._println("The rug has an elaborate turkish pattern that is almost entirely faded out.",
 			"A few threadbare patches barely hold together as a pale path down the center leads north down the hallway.")
-			system.println("")
+			system._println("")
 			return true
 		}
 		if (["stained", "glass", "window"].includes(commandData[0])) {
-			system.println("Light streaming in through the three colored glass windows depicts three flowers; ",
+			system._println("Light streaming in through the three colored glass windows depicts three flowers; ",
 			"a ruby and emerald rose, an amethyst and obsidian pansy and a quartz and topaz daisy.")
-			system.println("")
+			system._println("")
 			return true
 		}
 		return super.look(commandData)
@@ -43,32 +43,32 @@ class EntryHall extends RoomCore {
 class SunnyHallway extends RoomCore {
 	constructor() {
 		super()
-		super.setTitle("A Sunny Hallway")
-		super.setDescription("The sunlight streams in through the windows to the east,",
+		super._setTitle("A Sunny Hallway")
+		super._setDescription("The sunlight streams in through the windows to the east,",
 		"causing dust particles in the air to glimmer while drifting between the shafts of light.")
-		super.setExits("The hall continues to the <strong>north</strong>.",
+		super._setExits("The hall continues to the <strong>north</strong>.",
 		"The great entry hall can be seen to the <strong>south</strong>.",
 		"There is an open doorway to the <strong>west</strong>.")
 	
 	}
 	north() {
-		system.println("You walk north.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
+		system._println("You walk north.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
 		return true
 	}
 
 	south() {
-		system.println("You walk south.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.EntryHall)
+		system._println("You walk south.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.EntryHall)
 		return true
 	}
 
 	west() {
-		system.println("You walk west.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.LibraryEntrance)
+		system._println("You walk west.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.LibraryEntrance)
 		return true
 	}
 }
@@ -76,56 +76,56 @@ class SunnyHallway extends RoomCore {
 class DarkenedHallway extends RoomCore {
 	constructor() {
 		super()
-		super.setTitle("A darkened hallway")
-		super.setDescription(`The heavy dark <span class="hint">drapes</span> over the eastern windows bring a sense of closeness to the hallway.`,
+		super._setTitle("A darkened hallway")
+		super._setDescription(`The heavy dark <span class="hint">drapes</span> over the eastern windows bring a sense of closeness to the hallway.`,
 		"The worn red rug smells a little like mold.")
-		super.setExits("The hallway looks brighter to the <strong>south</strong>.",
+		super._setExits("The hallway looks brighter to the <strong>south</strong>.",
 		"An open oak door to the <strong>east</strong> leads out into the garden.",
 		"There is a large and well-lit room to the <strong>north</strong>.")
 	
 	}
 
 	south() {
-		system.println("You walk south.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
+		system._println("You walk south.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
 		return true
 	}
 
 	east() {
-		system.println("You walk through the door and out into the garden, blinking in the sudden harsh light.")
-		system.println("")
-		player.setPosition(Garden, Garden.Rooms.Patio)
+		system._println("You walk through the door and out into the garden, blinking in the sudden harsh light.")
+		system._println("")
+		player._setPosition(Garden, Garden.Rooms.Patio)
 		return true
 	}
 
 	north() {
-		system.println("You walk north.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.GrandBallroom)
+		system._println("You walk north.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.GrandBallroom)
 		return true
 	}
 
 	open(commandData) {
 		if (["drapes", "curtains"].includes(commandData[0])) {
-			system.println(`You tug on the drapes in an attempt to open them, but they seem affixed to a <span class="hint">metal box</span> on the floor.`)
-			system.println("")
+			system._println(`You tug on the drapes in an attempt to open them, but they seem affixed to a <span class="hint">metal box</span> on the floor.`)
+			system._println("")
 			return true
 		}
 	}
 
 	look(commandData) {
 		if (["drapes", "curtains"].includes(commandData[0])) {
-			system.println("The heavy felt drapes block most of the cheery yellow sunlight creeping around the edges.",
+			system._println("The heavy felt drapes block most of the cheery yellow sunlight creeping around the edges.",
 			"A gray layer of dust makes the rich green fabric a dingy shade.")
-			system.println("")
+			system._println("")
 			return true
 		}
 		if (["metal", "box", "lock"].includes(commandData[0])) {
-			system.println("The metal box is bolted to the floor, but has a strange round keyhole on the front.",
+			system._println("The metal box is bolted to the floor, but has a strange round keyhole on the front.",
 			"Each corner of the drapes has a rust-flecked metal loop that is held in place by a latch mechanism on the box.",
 			"No amount of tugging will free the drapes enough to open them.")
-			system.println("")
+			system._println("")
 			return true
 		}
 		return super.look(commandData)
@@ -135,86 +135,86 @@ class DarkenedHallway extends RoomCore {
 class GrandBallroom extends RoomCore {
 	constructor() {
 		super()
-		super.setTitle("Grand Ballroom")
+		super._setTitle("Grand Ballroom")
 		this.startingDescription = ["The polished marble floors echo with footsteps, augmenting the already voluminous size of the ballroom.",
 		`In the center of the tremendous vaulted ceiling hangs an enormous <span class="hint">crystal chandelier</span>,`,
 		"casting sparkles of light across the ornately gilded walls."]
-		super.setDescription(...this.startingDescription)
-		super.setExits("A hallway extends beneath an archway to the <strong>south</strong>.")
+		super._setDescription(...this.startingDescription)
+		super._setExits("A hallway extends beneath an archway to the <strong>south</strong>.")
 		this.panelIsOpen = false
 		
 	}
 
 	south() {
-		system.println("You walk south.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
+		system._println("You walk south.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
 		return true
 	}
 
 	close(commandData) {
 		if (["panel", "metal"].includes(commandData[0])) {
 			if(this.panelIsOpen) {
-				system.println("Carefully closing the panel and pressing it back into place, a simple click holds the metal panel closed and disguised again.")
-				system.println("")
-				super.setDescription(...this.startingDescription)
+				system._println("Carefully closing the panel and pressing it back into place, a simple click holds the metal panel closed and disguised again.")
+				system._println("")
+				super._setDescription(...this.startingDescription)
 				this.panelIsOpen = false
 				return true
 			}
-			system.println("The panel is already closed.")
-			system.println("")
+			system._println("The panel is already closed.")
+			system._println("")
 			return true
 		}
-		system.println("Close what?")
-		system.println("")
+		system._println("Close what?")
+		system._println("")
 		return true
 	}
 
 	press(commandData) {
 		if (["panel", "metal", "right"].includes(commandData[0])) {
 			if(this.panelIsOpen) {
-				system.println("Carefully closing the panel and pressing it back into place, a simple click holds the metal panel closed and disguised again.")
-				system.println("")
-				super.setDescription(...this.startingDescription)
+				system._println("Carefully closing the panel and pressing it back into place, a simple click holds the metal panel closed and disguised again.")
+				system._println("")
+				super._setDescription(...this.startingDescription)
 				this.panelIsOpen = false
 				return true
 			}
-			system.println("Pressing on the panel causes an audible click from within the wall. The panel swings open revealing a strange round keyhole.")
-			system.println("")
-			super.setDescription(...this.startingDescription, `A small <span class="hint">metal panel</span> is hanging open on the eastern wall.`)
+			system._println("Pressing on the panel causes an audible click from within the wall. The panel swings open revealing a strange round keyhole.")
+			system._println("")
+			super._setDescription(...this.startingDescription, `A small <span class="hint">metal panel</span> is hanging open on the eastern wall.`)
 			this.panelIsOpen = true
 			return true
 		}
-		system.println("Press what?")
-		system.println("")
+		system._println("Press what?")
+		system._println("")
 		return true
 	}
 
 	look(commandData) {
 		if (["crystal", "chandelier"].includes(commandData[0])) {
-			system.println("Multitudinous crystal shards gently swing high above, flashing tiny flecks of rainbow light across the walls and floors.",
+			system._println("Multitudinous crystal shards gently swing high above, flashing tiny flecks of rainbow light across the walls and floors.",
 			`One bright spot hits a <span class="hint">metallic object</span> on the eastern wall which glints brightly.`)
-			system.println("")
+			system._println("")
 			return true
 		}
 		if (["metallic", "object", "glint", "panel"].includes(commandData[0])) {
 			if(this.panelIsOpen) {
-				system.println("Behind the panel is a strange round keyhole.")
-				system.println("")
+				system._println("Behind the panel is a strange round keyhole.")
+				system._println("")
 				return true
 			}
-			system.println(`A metal <span class="hint">panel</span> is disguised on the wall here between some flowery scrollwork, flecked with rust.`,
+			system._println(`A metal <span class="hint">panel</span> is disguised on the wall here between some flowery scrollwork, flecked with rust.`,
 			`The right edge of the panel looks well worn from many firm <span class="hint">press</span>es.`)
-			system.println("")
+			system._println("")
 			return true
 		}
 		return super.look(commandData)
 	}
 
 	waltz() {
-		system.println("You twirl across the marble floors for a few moments, in time to an imagined string quartet.",
+		system._println("You twirl across the marble floors for a few moments, in time to an imagined string quartet.",
 		"The exhilaration of spinning leaves you rosy-cheeked and breathless.")
-		system.println("")
+		system._println("")
 		return true
 	}
 }
@@ -222,23 +222,23 @@ class GrandBallroom extends RoomCore {
 class LibraryEntrance extends RoomCore {
 	constructor() {
 		super()
-		super.setTitle("The Gallery Hall")
-		super.setDescription("Footsteps echo on the polished hardwood floors down the narrow hallway.",
+		super._setTitle("The Gallery Hall")
+		super._setDescription("Footsteps echo on the polished hardwood floors down the narrow hallway.",
 		"The paneled walls are a faded white, decorated with large portraits of stuffy, pompous old men.")
-		super.setExits("A bright hallway can be seen to the <strong>east</strong>. A large room is just visible through an arched doorway to the <strong>west</strong>.")
+		super._setExits("A bright hallway can be seen to the <strong>east</strong>. A large room is just visible through an arched doorway to the <strong>west</strong>.")
 	
 	}
 	west() {
-		system.println("You walk west through the arched doorway.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.LibraryMainFloor)
+		system._println("You walk west through the arched doorway.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.LibraryMainFloor)
 		return true
 	}
 
 	east() {
-		system.println("You walk east into the bright hallway.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
+		system._println("You walk east into the bright hallway.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
 		return true
 	}
 }
@@ -246,25 +246,25 @@ class LibraryEntrance extends RoomCore {
 class LibraryMainFloor extends RoomCore {
 	constructor() {
 		super()
-		super.setTitle("The Library")
-		super.setDescription("A black iron spiral staircase twists up from the center of the room, leading up to a wrought-iron metal catwalk.",
+		super._setTitle("The Library")
+		super._setDescription("A black iron spiral staircase twists up from the center of the room, leading up to a wrought-iron metal catwalk.",
 		"A large, two-story window is bordered by vibrant green felt drapes on the northern wall, providing ample reading light for the myriad of books crammed on the shelves which take up every spare wall space.",
 		"The smell of vanilla and worn leather permeates the air, and one of the dark-brown leather armchairs is nearly irresistibly summoning you to grab a book and sink down into it's embrace.")
-		super.setExits("There is a spiral staircase leading <strong>up</strong>, and an arched doorway off to the <strong>east</strong>.")
+		super._setExits("There is a spiral staircase leading <strong>up</strong>, and an arched doorway off to the <strong>east</strong>.")
 	
 	}
 	up() {
-		system.println("Your footsteps reverberate as you climb the spiral staircase.")
-		system.println("")
+		system._println("Your footsteps reverberate as you climb the spiral staircase.")
+		system._println("")
 		// player.setPosition(OldHouse, OldHouse.Rooms.LibraryFirstBalcony)
-		system.println("Not yet implemented.")
+		system._println("Not yet implemented.")
 		return true
 	}
 
 	east() {
-		system.println("You walk east.")
-		system.println("")
-		player.setPosition(OldHouse, OldHouse.Rooms.LibraryEntrance)
+		system._println("You walk east.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.LibraryEntrance)
 		return true
 	}
 
@@ -274,22 +274,22 @@ class LibraryMainFloor extends RoomCore {
 class Pearl extends ItemCore {
 	constructor() {
 		super()
-		super.setKeys("pearl", "bead")
+		super._setKeys("pearl", "bead")
 		this.viewed = false
 	}
 
 	look(commandData) {
 		if (!commandData || commandData.length <= 0) {
 			if (this.viewed) {
-				system.println(`A perfect white <span class="hint">pearl</span> sits on the floor.`)
+				system._println(`A perfect white <span class="hint">pearl</span> sits on the floor.`)
 			} else {
-				system.println(`A tiny white <span class="hint">bead</span> sits on the floor.`)
+				system._println(`A tiny white <span class="hint">bead</span> sits on the floor.`)
 			}
 			return false
 		}
 		if (commandData.length > 0 && this.keys.includes(commandData[0])) {
-			system.println("It is a shiny, opalescent pearl.")
-			system.println("")
+			system._println("It is a shiny, opalescent pearl.")
+			system._println("")
 			this.viewed = true
 			return true
 		}
@@ -300,13 +300,13 @@ class Pearl extends ItemCore {
 	take(commandData) {
 		if (this.keys.includes(commandData[0])) {
 			if (this.viewed) {
-				system.println("You take the pearl.")
+				system._println("You take the pearl.")
 			} else {
-				system.println("You take the bead.")
+				system._println("You take the bead.")
 			}
-			system.println("")
-			var item = world.takeItem(commandData[0], player.getPosition())
-			player.giveItem(item)
+			system._println("")
+			var item = world._takeItem(commandData[0], player._getPosition())
+			player._giveItem(item)
 			return true
 		}
 		return false
@@ -314,23 +314,23 @@ class Pearl extends ItemCore {
 
 	held() {
 		if (this.viewed) {
-			system.println("a pearl")
+			system._println("a pearl")
 		} else {
-			system.println("a bead")
+			system._println("a bead")
 		}
 		return false
 	}
 
 	drop(commandData) {
-		if (this.keys.includes(commandData[0]) && player.hasItem(this)) {
+		if (this.keys.includes(commandData[0]) && player._hasItem(this)) {
 			if (this.viewed) {
-				system.println("You drop the pearl, letting it bounce across the floor to a stop.")
+				system._println("You drop the pearl, letting it bounce across the floor to a stop.")
 			} else {
-				system.println("You drop the bead, letting it bounce across the floor to a stop.")
+				system._println("You drop the bead, letting it bounce across the floor to a stop.")
 			}
-			system.println("")
-			var item = player.takeItem(commandData[0])
-			world.giveItem(item, player.getPosition())
+			system._println("")
+			var item = player._takeItem(commandData[0])
+			world._giveItem(item, player._getPosition())
 			return true
 		}
 		return false
@@ -350,5 +350,5 @@ export default class OldHouse {
 	}
 }
 
-world.addZone(OldHouse, Object.values(OldHouse.Rooms))
-world.addItems(OldHouse, OldHouse.Rooms.GrandBallroom, [OldHouse.Items.Pearl])
+world._addZone(OldHouse, Object.values(OldHouse.Rooms))
+world._addItems(OldHouse, OldHouse.Rooms.GrandBallroom, [OldHouse.Items.Pearl])

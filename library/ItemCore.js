@@ -16,26 +16,26 @@ export default class ItemCore {
 		this.heldText = heldText
 		this.dropText = dropText
 	}
-	setKeys() {
+	_setKeys() {
 		this.keys = [...arguments]
 	}
-	setLookText() {
+	_setLookText() {
 		this.lookText = [...arguments].join(" ")
 	}
-	setLookAtText() {
+	_setLookAtText() {
 		this.lookAtText = [...arguments].join(" ")
 	}
-	setTakeText() {
+	_setTakeText() {
 		this.takeText = [...arguments].join(" ")
 	}
-	setHeldText() {
+	_setHeldText() {
 		this.heldText = [...arguments].join(" ")
 	}
-	setDropText() {
+	_setDropText() {
 		this.dropText = [...arguments].join(" ")
 	}
 
-	actions(command, commandData) {
+	_actions(command, commandData) {
 		if (command in this) {
 			return this[command](commandData)
 		}
@@ -43,39 +43,39 @@ export default class ItemCore {
 	}
 
 	held() {
-		system.println(this.heldText)
+		system._println(this.heldText)
 		return false
 	}
 
 	look(commandData) {
 		if (!commandData || commandData.length <= 0) {
-			system.println(this.lookText)
+			system._println(this.lookText)
 			return false
 		}
 		if (commandData.length > 0 && this.keys.includes(commandData[0])) {
-			system.println(this.lookAtText)
-			system.println("")
+			system._println(this.lookAtText)
+			system._println("")
 			return true
 		}
 	}
 
 	take(commandData) {
 		if (this.keys.includes(commandData[0])) {
-			system.println(this.takeText)
-			system.println("")
-			var item = world.takeItem(commandData[0], player.getPosition())
-			player.giveItem(item)
+			system._println(this.takeText)
+			system._println("")
+			var item = world._takeItem(commandData[0], player._getPosition())
+			player._giveItem(item)
 			return true
 		}
 		return false
 	}
 
 	drop(commandData) {
-		if (this.keys.includes(commandData[0]) && player.hasItem(this)) {
-			system.println(this.dropText)
-			system.println("")
-			var item = player.takeItem(commandData[0])
-			world.giveItem(item, player.getPosition())
+		if (this.keys.includes(commandData[0]) && player._hasItem(this)) {
+			system._println(this.dropText)
+			system._println("")
+			var item = player._takeItem(commandData[0])
+			world._giveItem(item, player._getPosition())
 			return true
 		}
 		return false

@@ -7,16 +7,16 @@ export class Player {
 		this.playerInventory = []
 	}
 
-	getPosition() {
+	_getPosition() {
 		return {
 			zone: this.currentZone,
 			room: this.currentRoom,
 		}
 	}
 
-	setPosition(zone, room) {
+	_setPosition(zone, room) {
 		if(this.currentRoom) {
-			let currentRoom = world.getRoom(this.currentZone, this.currentRoom)
+			let currentRoom = world._getRoom(this.currentZone, this.currentRoom)
 			if(typeof currentRoom.leave == "function") {
 				currentRoom.leave()
 			}
@@ -24,22 +24,22 @@ export class Player {
 		
 		this.currentZone = zone
 		this.currentRoom = room
-		world.getRoom(zone, room).enter()
-		var items = world.getItems(zone, room)
+		world._getRoom(zone, room)._enter()
+		var items = world._getItems(zone, room)
 		for (var i = 0; i < items.length; i++) {
 			items[i].look([])
 		}
-		system.println("")
+		system._println("")
 	}
 
-	getInventory() {
+	_getInventory() {
 		return this.playerInventory
 	}
 
-	giveItem(item) {
+	_giveItem(item) {
 		this.playerInventory.push(item)
 	}
-	takeItem(itemKey) {
+	_takeItem(itemKey) {
 		for (var i = 0; i < this.playerInventory.length; i++) {
 			if (this.playerInventory[i].keys.includes(itemKey)) {
 				var item = this.playerInventory.splice(i, 1)
@@ -49,11 +49,11 @@ export class Player {
 		return null
 	}
 
-	hasItem(item) {
+	_hasItem(item) {
 		return this.playerInventory.includes(item)
 	}
 
-	getItemsByKey(commandData) {
+	_getItemsByKey(commandData) {
 		return this.playerInventory.filter((item) =>
 			item.keys.includes(commandData[0])
 		)
