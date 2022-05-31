@@ -24,6 +24,37 @@ class Patio extends RoomCore {
 		player.setPosition(Garden, Garden.Rooms.Shed)
 		return true
 	}
+
+	east() {
+		system.println("You walk east.")
+		system.println("")
+		player.setPosition(Garden, Garden.Rooms.GardenPath)
+		return true
+	}
+}
+
+class GardenPath extends RoomCore {
+	constructor() {
+		super()
+		super.setTitle("A sunny garden path")
+		super.setDescription("Deep green moss fills the crumbling mortar gaps in the brick path, which gently curve around a well-kept japanese maple.",
+		"A few spinning maple seeds propeller down from the canopy with every gentle breeze.")
+		super.setExits("The dark old house looms to the <strong>west</strong>. The brick path meanders towards the <strong>east</strong>.")
+	}
+
+	west() {
+		system.println("You walk west.")
+		system.println("")
+		player.setPosition(Garden, Garden.Rooms.Patio)
+		return true
+	}
+
+	east() {
+		system.println("You walk east.")
+		system.println("")
+		player.setPosition(Garden, Garden.Rooms.GardenPath)
+		return true
+	}
 }
 
 export class Shed extends RoomCore {
@@ -79,6 +110,19 @@ class Pansy extends ItemCore {
 	}
 }
 
+class MapleSeed extends ItemCore {
+	constructor() {
+		super(
+			["maple", "seed"],
+			`A <span class="hint">maple seed</span> lies on the ground.`,
+			"The rich red maple seed looks like the wing of a delicate insect, ready to soar at any moment.",
+			"You gingerly put the seed in your inventory.",
+			"a maple seed",
+			"The seed spins madly as it gently drifts to the floor.",
+		)
+	}
+}
+
 export class WateringCan extends ItemCore {
 	constructor() {
 		super(
@@ -113,11 +157,12 @@ export class WateringCan extends ItemCore {
 }
 
 export default class Garden {
-	static Rooms = {Patio, Shed}
-	static Items = {Pansy, WateringCan}
+	static Rooms = {Patio, Shed, GardenPath}
+	static Items = {Pansy, WateringCan, MapleSeed}
 }
 
 world.addZone(Garden, Object.values(Garden.Rooms))
 world.addItems(Garden, Garden.Rooms.Patio, [Garden.Items.Pansy])
 world.addItems(Garden, Garden.Rooms.Shed, [Garden.Items.WateringCan])
+world.addItems(Garden, Garden.Rooms.GardenPath, [Garden.Items.MapleSeed])
 
