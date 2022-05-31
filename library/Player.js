@@ -15,6 +15,13 @@ export class Player {
 	}
 
 	setPosition(zone, room) {
+		if(this.currentRoom) {
+			let currentRoom = world.getRoom(this.currentZone, this.currentRoom)
+			if(typeof currentRoom.leave == "function") {
+				currentRoom.leave()
+			}
+		}
+		
 		this.currentZone = zone
 		this.currentRoom = room
 		world.getRoom(zone, room).enter()

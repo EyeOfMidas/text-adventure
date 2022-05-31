@@ -30,6 +30,7 @@ export class System {
 			message = "&nbsp;"
 		}
 		this.print(`<div class="line">${message}</div>\n`)
+		this.outputDiv.scrollTop = this.outputDiv.scrollHeight
 	}
 
 	log() {

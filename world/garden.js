@@ -3,11 +3,10 @@ import OldHouse from "./oldhouse.js"
 
 class Patio extends RoomCore {
 	constructor() {
-		super(
-			"A lush outdoor garden",
-			"The warmth of the sun falls on the brick patio, radiating heat in the walled garden. The smell of vines and flowers permeate the air.",
-			"The rickety garden shed is to the <strong>south</strong>. An old oak door opens into the house to the <strong>west</strong>.",
-		)
+		super()
+		super.setTitle("A lush outdoor garden")
+		super.setDescription("The warmth of the sun falls on the brick patio, radiating heat in the walled garden. The smell of vines and flowers permeate the air.")
+		super.setExits("The rickety garden shed is to the <strong>south</strong>. An old oak door opens into the house to the <strong>west</strong>. The bricks narrow into a path leading deeper <strong>west</strong> into the garden.")
 	}
 
 	west() {
@@ -38,7 +37,7 @@ class GardenPath extends RoomCore {
 		super()
 		super.setTitle("A sunny garden path")
 		super.setDescription("Deep green moss fills the crumbling mortar gaps in the brick path, which gently curve around a well-kept japanese maple.",
-		"A few spinning maple seeds propeller down from the canopy with every gentle breeze.")
+		"The maple leaves are a bright red, with several clusters of twin propellered seeds amongst the branches.")
 		super.setExits("The dark old house looms to the <strong>west</strong>. The brick path meanders towards the <strong>east</strong>.")
 	}
 
@@ -55,15 +54,32 @@ class GardenPath extends RoomCore {
 		player.setPosition(Garden, Garden.Rooms.GardenPath)
 		return true
 	}
+
+	enter() {
+		super.enter();
+		this.addRandomSeedFall()
+	}
+
+	leave() {
+		clearTimeout(this.lastFall)
+	}
+
+	addRandomSeedFall() {
+		this.lastFall = setTimeout(() => {
+			system.println("A warm summer breeze blows a maple seed out of the tree above, and it spirals down to the bricks.")
+			system.println("")
+			world.addItems(Garden, Garden.Rooms.GardenPath, [Garden.Items.MapleSeed])
+			this.addRandomSeedFall()
+		}, Math.floor(30000 * Math.random()) + 30000)
+	}
 }
 
 export class Shed extends RoomCore {
 	constructor() {
-		super(
-			"The gardener's shed",
-			"Rough hewn wood planks make up the walls of this small shed. There are shelves with various tools and gardening implements lining both walls. The workbench along the back wall has some potting soil spilled on it.",
-			"Sunlight streams in from the old wooden door frame to the <strong>north</strong>.",
-		)
+		super()
+		super.setTitle("The gardener's shed")
+		super.setDescription("Rough hewn wood planks make up the walls of this small shed. There are shelves with various tools and gardening implements lining both walls. The workbench along the back wall has some potting soil spilled on it.")
+		super.setExits("Sunlight streams in from the old wooden door frame to the <strong>north</strong>.")
 	}
 
 	north() {
