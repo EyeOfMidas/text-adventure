@@ -6,7 +6,7 @@ class Patio extends RoomCore {
 		super()
 		super._setTitle("A lush outdoor garden")
 		super._setDescription("The warmth of the sun falls on the brick patio, radiating heat in the walled garden. The smell of vines and flowers permeate the air.")
-		super._setExits("The rickety garden shed is to the <strong>south</strong>. An old oak door opens into the house to the <strong>west</strong>. The bricks narrow into a path leading deeper <strong>west</strong> into the garden.")
+		super._setExits("The rickety garden shed is to the <strong>south</strong>. An old oak door opens into the house to the <strong>west</strong>. The bricks narrow into a path leading deeper <strong>east</strong> into the garden.")
 	}
 
 	west() {
