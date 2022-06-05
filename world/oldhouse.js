@@ -13,7 +13,7 @@ class EntryHall extends RoomCore {
 	north() {
 		system._println("You walk north.")
 		system._println("")
-		player._setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
+		player._setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
 		return true
 	}
 
@@ -44,31 +44,35 @@ class SunnyHallway extends RoomCore {
 	constructor() {
 		super()
 		super._setTitle("A Sunny Hallway")
-		super._setDescription("The sunlight streams in through the windows to the east,",
+		super._setDescription("The sunlight streams in through the open door to the east,",
 		"causing dust particles in the air to glimmer while drifting between the shafts of light.")
-		super._setExits("The hall continues to the <strong>north</strong>.",
-		"The great entry hall can be seen to the <strong>south</strong>.",
-		"There is an open doorway to the <strong>west</strong>.")
+		super._setExits("There is a large and well-lit room to the <strong>north</strong>.",
+		"An open oak door to the <strong>east</strong> leads out into the garden.",
+		"The hallway continues out of the light to the <strong>south</strong>."
+		)
 	
 	}
+
 	north() {
 		system._println("You walk north.")
 		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.GrandBallroom)
+		return true
+	}
+	
+	south() {
+		system._println("You walk south.")
+		system._println("")
+		system._println("You blink as your eyes adjust to the darkness.")
 		player._setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
 		return true
 	}
 
-	south() {
-		system._println("You walk south.")
-		system._println("")
-		player._setPosition(OldHouse, OldHouse.Rooms.EntryHall)
-		return true
-	}
 
-	west() {
-		system._println("You walk west.")
+	east() {
+		system._println("You walk through the door and out into the garden.")
 		system._println("")
-		player._setPosition(OldHouse, OldHouse.Rooms.LibraryEntrance)
+		player._setPosition(Garden, Garden.Rooms.Patio)
 		return true
 	}
 }
@@ -79,30 +83,31 @@ class DarkenedHallway extends RoomCore {
 		super._setTitle("A darkened hallway")
 		super._setDescription(`The heavy dark <span class="hint">drapes</span> over the eastern windows bring a sense of closeness to the hallway.`,
 		"The worn red rug smells a little like mold.")
-		super._setExits("The hallway looks brighter to the <strong>south</strong>.",
-		"An open oak door to the <strong>east</strong> leads out into the garden.",
-		"There is a large and well-lit room to the <strong>north</strong>.")
+		super._setExits("The hallway looks brighter to the <strong>north</strong>.",
+		"There is an open doorway to the <strong>west</strong>.",
+		"The great entry hall can be seen to the <strong>south</strong>.")
 	
 	}
 
-	south() {
-		system._println("You walk south.")
+	west() {
+		system._println("You walk west.")
 		system._println("")
-		player._setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
-		return true
-	}
-
-	east() {
-		system._println("You walk through the door and out into the garden, blinking in the sudden harsh light.")
-		system._println("")
-		player._setPosition(Garden, Garden.Rooms.Patio)
+		player._setPosition(OldHouse, OldHouse.Rooms.LibraryEntrance)
 		return true
 	}
 
 	north() {
 		system._println("You walk north.")
 		system._println("")
-		player._setPosition(OldHouse, OldHouse.Rooms.GrandBallroom)
+		system._println("You walk through a shaft of light, squinting in the sudden brightness.")
+		player._setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
+		return true
+	}
+
+	south() {
+		system._println("You walk south.")
+		system._println("")
+		player._setPosition(OldHouse, OldHouse.Rooms.EntryHall)
 		return true
 	}
 
@@ -148,7 +153,7 @@ class GrandBallroom extends RoomCore {
 	south() {
 		system._println("You walk south.")
 		system._println("")
-		player._setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
+		player._setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
 		return true
 	}
 
@@ -225,7 +230,7 @@ class LibraryEntrance extends RoomCore {
 		super._setTitle("The Gallery Hall")
 		super._setDescription("Footsteps echo on the polished hardwood floors down the narrow hallway.",
 		"The paneled walls are a faded white, decorated with large portraits of stuffy, pompous old men.")
-		super._setExits("A bright hallway can be seen to the <strong>east</strong>. A large room is just visible through an arched doorway to the <strong>west</strong>.")
+		super._setExits("A dim hallway can be seen to the <strong>east</strong>. A large room is just visible through an arched doorway to the <strong>west</strong>.")
 	
 	}
 	west() {
@@ -238,7 +243,7 @@ class LibraryEntrance extends RoomCore {
 	east() {
 		system._println("You walk east into the bright hallway.")
 		system._println("")
-		player._setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
+		player._setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
 		return true
 	}
 }

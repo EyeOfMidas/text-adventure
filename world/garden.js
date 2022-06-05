@@ -12,8 +12,7 @@ class Patio extends RoomCore {
 	west() {
 		system._println("You enter the house.")
 		system._println("")
-		system._println("You blink as your eyes adjust to the darkness.")
-		player._setPosition(OldHouse, OldHouse.Rooms.DarkenedHallway)
+		player._setPosition(OldHouse, OldHouse.Rooms.SunnyHallway)
 		return true
 	}
 
