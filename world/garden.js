@@ -124,7 +124,7 @@ export class RoseGarden extends RoomCore {
 	constructor() {
 		super()
 		super._setTitle("The Rose Garden")
-		super._setDescription("Roses")
+		super._setDescription("The brick path weaves south, lined on both side with massive rose bushes, covered in blooms as big as an open hand.","The fragrance is as intoxicating as the overhead summer sun is scorching hot.")
 		super._setExits("The cheerful trickle of water comes from the <strong>north</strong>.",
 		"A garden path in mottled sunlight can be seen to the <strong>south</strong>.")
 	}
