@@ -50,7 +50,7 @@ class GardenPath extends RoomCore {
 	east() {
 		system._println("You walk east.")
 		system._println("")
-		player._setPosition(Garden, Garden.Rooms.GardenPath)
+		player._setPosition(Garden, Garden.Rooms.Pond)
 		return true
 	}
 
@@ -85,6 +85,23 @@ export class Shed extends RoomCore {
 		system._println("You walk north, into the garden.")
 		system._println("")
 		player._setPosition(Garden, Patio)
+		return true
+	}
+}
+
+export class Pond extends RoomCore {
+	constructor() {
+		super()
+		super._setTitle("The garden pond")
+		super._setDescription("Large, misshapen rocks border a round pond with a large marble oyster on the far side spilling water into the pond below.",
+		"Waterlillies bob happily on the surface of the burbling water, and the algae-covered stones are hugged by creeping jenny plants.")
+		super._setExits("The brick pathway <strong>west</strong> heads towards a maple tree.")
+	}
+
+	west() {
+		system._println("You walk west.")
+		system._println("")
+		player._setPosition(Garden, GardenPath)
 		return true
 	}
 }
@@ -139,14 +156,13 @@ class MapleSeed extends ItemCore {
 
 export class WateringCan extends ItemCore {
 	constructor() {
-		super(
-			["can", "watering"],
-			`A rusted iron <span class="hint">watering can</span> stands on the ground.`,
-			`The watering can still has a little bit of <span class="hint">water</span> in it.`,
-			"You heft the watering can.",
-			"a watering can",
-			"You place the watering can on the ground.",
-		)
+		super()
+		super._setKeys("can", "watering")
+		super._setLookText(`A rusted iron <span class="hint">watering can</span> stands on the ground.`)
+		super._setLookAtText(`The watering can still has a little bit of <span class="hint">water</span> in it.`)
+		super._setTakeText("You heft the watering can.")
+		super._setHeldText("a watering can")
+		super._setDropText("You place the watering can on the ground.")
 	}
 
 	water(commandData) {
@@ -171,7 +187,7 @@ export class WateringCan extends ItemCore {
 }
 
 export default class Garden {
-	static Rooms = {Patio, Shed, GardenPath}
+	static Rooms = {Patio, Shed, GardenPath, Pond}
 	static Items = {Pansy, WateringCan, MapleSeed}
 }
 
