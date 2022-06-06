@@ -1,3 +1,4 @@
+import "./ArrayShuffle.js"
 export { default as ItemCore } from "./ItemCore.js"
 export { default as RoomCore } from "./RoomCore.js"
 export { default as system } from "./System.js"

@@ -66,7 +66,6 @@ class GardenPath extends RoomCore {
 	addRandomSeedFall() {
 		this.lastFall = setTimeout(() => {
 			system._println("A warm summer breeze blows a maple seed out of the tree above, and it spirals down to the bricks.")
-			system._println("")
 			world._addItems(Garden, Garden.Rooms.GardenPath, [Garden.Items.MapleSeed])
 			this.addRandomSeedFall()
 		}, Math.floor(30000 * Math.random()) + 30000)
@@ -95,7 +94,8 @@ export class Pond extends RoomCore {
 		super._setTitle("The garden pond")
 		super._setDescription("Large, misshapen rocks border a round pond with a large marble oyster on the far side spilling water into the pond below.",
 		"Waterlillies bob happily on the surface of the burbling water, and the algae-covered stones are hugged by creeping jenny plants.")
-		super._setExits("The brick pathway <strong>west</strong> heads towards a maple tree.")
+		super._setExits("The brick pathway <strong>west</strong> heads towards a maple tree.",
+		"A cheerful flower garden is to the <strong>east</strong> and the heady smell of roses drifts from the path to the <strong>south</strong>.")
 	}
 
 	west() {
@@ -103,6 +103,73 @@ export class Pond extends RoomCore {
 		system._println("")
 		player._setPosition(Garden, GardenPath)
 		return true
+	}
+
+	south() {
+		system._println("You walk south.")
+		system._println("")
+		player._setPosition(Garden, RoseGarden)
+		return true
+	}
+
+	east() {
+		system._println("You walk east.")
+		system._println("")
+		player._setPosition(Garden, FlowerGarden)
+		return true
+	}
+}
+
+export class RoseGarden extends RoomCore {
+	constructor() {
+		super()
+		super._setTitle("The Rose Garden")
+		super._setDescription("Roses")
+		super._setExits("The cheerful trickle of water comes from the <strong>north</strong>.",
+		"A garden path in mottled sunlight can be seen to the <strong>south</strong>.")
+	}
+
+	north() {
+		system._println("You walk north.")
+		system._println("")
+		player._setPosition(Garden, Pond)
+		return true
+	}
+}
+
+export class FlowerGarden extends RoomCore {
+	constructor() {
+		super()
+		super._setTitle("A wildflower garden")
+		super._setDescription("flower beds")
+		super._setExits("The cheerful trickle of water comes from the <strong>west</strong>.")
+	}
+
+	west() {
+		system._println("You walk west.")
+		system._println("")
+		player._setPosition(Garden, Pond)
+		return true
+	}
+
+	_enter() {
+		super._enter()
+		this.ambiance()
+	}
+
+	leave() {
+		clearTimeout(this.noiseTick)
+	}
+
+	ambiance() {
+		this.noiseTick = setInterval(() => {
+			let ambianceMessage = [
+				"A tiny honeybee laden with pollen bobs from flower to flower.",
+				"The warm summer breeze blows through, causing the flowers to wave and waltz.",
+				"A bird chirps merrily in a nearby tree.",
+			].shuffle()[0]
+			system._println(ambianceMessage)
+		}, 60000)
 	}
 }
 
@@ -187,7 +254,7 @@ export class WateringCan extends ItemCore {
 }
 
 export default class Garden {
-	static Rooms = {Patio, Shed, GardenPath, Pond}
+	static Rooms = {Patio, Shed, GardenPath, Pond, RoseGarden, FlowerGarden}
 	static Items = {Pansy, WateringCan, MapleSeed}
 }
 
