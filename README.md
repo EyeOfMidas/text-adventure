@@ -86,7 +86,7 @@ world._addZone(Garden, Object.values(Garden.Rooms))
 world._addItems(Garden, Garden.Rooms.Patio, [Garden.Items.Pansy, Garden.Items.WateringCan])
 ```
 
-Linking between rooms is done as a simple position update. If a user were to be in the `SunnyHallway` and were to type `north` the `north()` function would be called on the `SunnyHallway` class, which will print out some text to the user, and then set the player's position to the `OldHouse` zone and the `GrandBallroom` room.
+Linking between rooms is done as a simple position update. If a user were to be in the `SunnyHallway` and were to type `east`, the `east()` function would be called on the `SunnyHallway` class, which will print out some text to the user, and then set the player's position to the `Garden` zone and the `Patio` room.
 
 Returning `true` will inform the Core that this function should stop further processing and wait for another user input.
 
