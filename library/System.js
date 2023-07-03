@@ -64,6 +64,7 @@ export class System {
 				if (!this._handleInventoryItems(command, commandData)) {
 					if (!this._actions(command, commandData)) {
 						this._println(`I don't recognize '${command}'.`)
+						this._println("")
 					}
 				}
 			}
@@ -132,11 +133,11 @@ export class System {
 			this._println("You are not carrying anything.")
 		} else {
 			this._println("You are holding:")
-			for (let itemIndex in playerInventory) {
+			for (let itemIndex = 0; itemIndex < playerInventory.length; itemIndex++) {
 				playerInventory[itemIndex].held()
 			}
 		}
-		system._println("")
+		this._println("")
 		return true
 	}
 
@@ -225,17 +226,17 @@ export class System {
 				this._settings.zipmode = (commandData[1] === 'true')
 				this._println(`Setting zipmode to ${this._settings.zipmode}`)
 				break
-				case "hintmode":
-					this._settings.hintmode = (commandData[1] === 'true')
-					this._println(`Setting hintmode to ${this._settings.hintmode}`)
-					if(this._settings.hintmode) {
-						this.hintStyle = document.createElement('style');
-						this.hintStyle.innerHTML = ".hint { color: magenta; }"
-						document.head.appendChild(this.hintStyle)
-					} else {
-						document.head.removeChild(this.hintStyle)
-					}
-					break
+			case "hintmode":
+				this._settings.hintmode = (commandData[1] === 'true')
+				this._println(`Setting hintmode to ${this._settings.hintmode}`)
+				if(this._settings.hintmode) {
+					this.hintStyle = document.createElement('style');
+					this.hintStyle.innerHTML = ".hint { color: magenta; }"
+					document.head.appendChild(this.hintStyle)
+				} else {
+					document.head.removeChild(this.hintStyle)
+				}
+				break
 			default:
 				this._println(`I'm sorry, '${commandData[0]}' is not a setting I recognize.`)
 				this._println("")
