@@ -16,7 +16,7 @@ export class Player {
 
 	_setPosition(zone, room) {
 		if(this.currentRoom) {
-			let currentRoom = world._getRoom(this.currentZone, this.currentRoom)
+			let currentRoom = world._getRoom(this.currentZone.name, this.currentRoom.name)
 			if(typeof currentRoom.leave == "function") {
 				currentRoom.leave()
 			}
@@ -24,7 +24,7 @@ export class Player {
 		
 		this.currentZone = zone
 		this.currentRoom = room
-		world._getRoom(zone, room)._enter()
+		world._getRoom(zone.name, room.name)._enter()
 		var items = world._getItems(zone, room)
 		for (var i = 0; i < items.length; i++) {
 			items[i].look([])

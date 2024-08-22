@@ -13,8 +13,8 @@ export class World {
 		})
 	}
 
-	_getRoom(zone, room) {
-		return this.roomObjs[zone.name][room.name]
+	_getRoom(zoneName, roomName) {
+		return this.roomObjs[zoneName][roomName]
 	}
 
 	_addItems(zone, room, roomItems) {

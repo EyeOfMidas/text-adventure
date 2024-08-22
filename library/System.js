@@ -57,7 +57,7 @@ export class System {
 		let command = commandData.splice(0, 1)
 		command = command[0]
 		let playerPos = player._getPosition()
-		let room = world._getRoom(playerPos.zone, playerPos.room)
+		let room = world._getRoom(playerPos.zone.name, playerPos.room.name)
 
 		if (!room._actions(command, commandData)) {
 			if (!this._handleRoomItems(playerPos, command, commandData)) {
@@ -264,7 +264,7 @@ export class System {
 			case "room":
 				this._log(
 					"room data:",
-					world._getRoom(playerPos.zone, playerPos.room)
+					world._getRoom(playerPos.zone.name, playerPos.room.name)
 				)
 				this._log(
 					"room items:",
@@ -275,7 +275,7 @@ export class System {
 				this._log("player inventory:", playerInventory)
 				this._log(
 					"room data:",
-					world._getRoom(playerPos.zone, playerPos.room)
+					world._getRoom(playerPos.zone.name, playerPos.room.name)
 				)
 				this._log(
 					"room items:",
