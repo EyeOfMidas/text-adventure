@@ -175,14 +175,13 @@ export class FlowerGarden extends RoomCore {
 
 class Pansy extends ItemCore {
 	constructor() {
-		super(
-			["flower", "pansy"],
-			`A small <span class="hint">flower</span> wilts on the ground.`,
-			"The small purple pansy looks limp.",
-			"You carefully put the flower in your pocket.",
-			"a flower",
-			"You let the flower fall to the floor.",
-		)
+		super(Garden, Pansy)
+		super._setKeys("flower", "pansy")
+		super._setLookText(`A small <span class="hint">flower</span> wilts on the ground.`)
+		super._setLookAtText("The small purple pansy looks limp.")
+		super._setTakeText("You carefully put the flower in your pocket.")
+		super._setHeldText("a flower")
+		super._setDropText("You let the flower fall to the floor.")
 		this.isRefreshed = false
 	}
 
@@ -211,7 +210,7 @@ class Pansy extends ItemCore {
 
 class MapleSeed extends ItemCore {
 	constructor() {
-		super()
+		super(Garden, MapleSeed)
 		super._setKeys("maple", "seed")
 		super._setLookText(`A <span class="hint">maple seed</span> lies on the ground.`)
 		super._setLookAtText("The rich red maple seed looks like the wing of a delicate insect, ready to soar at any moment.")
@@ -223,7 +222,7 @@ class MapleSeed extends ItemCore {
 
 export class WateringCan extends ItemCore {
 	constructor() {
-		super()
+		super(Garden, WateringCan)
 		super._setKeys("can", "watering")
 		super._setLookText(`A rusted iron <span class="hint">watering can</span> stands on the ground.`)
 		super._setLookAtText(`The watering can still has a little bit of <span class="hint">water</span> in it.`)

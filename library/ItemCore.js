@@ -2,19 +2,27 @@ import { system, player, world } from "./Core.js"
 
 export default class ItemCore {
 	constructor(
+		zoneClassType,
+		classType,
 		keys = [],
 		lookText = "",
 		lookAtText = "",
 		takeText = "",
 		heldText = "",
-		dropText = ""
+		dropText = "",
+		originZone = "",
+		originRoom = "",
 	) {
+		this.zoneClassType = zoneClassType
+		this.classType = classType
 		this.keys = keys
 		this.lookText = lookText
 		this.lookAtText = lookAtText
 		this.takeText = takeText
 		this.heldText = heldText
 		this.dropText = dropText
+		this.originZone = originZone
+		this.originRoom = originRoom
 	}
 	_setKeys() {
 		this.keys = [...arguments]
@@ -40,6 +48,18 @@ export default class ItemCore {
 			return this[command](commandData)
 		}
 		return false
+	}
+	_setOrigin(zone, room) {
+		this.originZone = zone
+		this.originRoom = room
+	}
+
+	_save() {
+		return {name: this.classType.name, zone: this.zoneClassType.name, origin: {zone: this.originZone, room: this.originRoom}}
+	}
+
+	_load() {
+		return null
 	}
 
 	held() {

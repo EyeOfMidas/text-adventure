@@ -4,12 +4,14 @@ export class World {
 		this.roomClasses = {}
 		this.roomObjs = {}
 		this.items = {}
+		this.itemClasses = {}
 	}
 
 	_addZone(zone, zoneData) {
 		this.zoneClasses[zone.name] = zone
 		this.roomObjs[zone.name] = []
 		this.roomClasses[zone.name] = []
+		this.itemClasses[zone.name] = []
 		this.items[zone.name] = []
 		zoneData.forEach((roomClass) => {
 			this.roomClasses[zone.name][roomClass.name] = roomClass
@@ -32,12 +34,19 @@ export class World {
 
 	_addItems(zone, room, roomItems) {
 		roomItems.forEach((itemClass) => {
-			this.items[zone.name][room.name].push(new itemClass())
+			this.itemClasses[zone.name][itemClass.name] = itemClass
+			let itemInstance = new itemClass(itemClass.name)
+			itemInstance._setOrigin(zone.name, room.name)
+			this.items[zone.name][room.name].push(itemInstance)
 		})
 	}
 
 	_getItems(zoneName, roomName) {
 		return this.items[zoneName][roomName]
+	}
+
+	_getItemClass(zoneName, itemName) {
+		return this.itemClasses[zoneName][itemName]
 	}
 
 	_takeItem(itemKey, pos) {

@@ -39,6 +39,13 @@ export class Player {
 		let zone = world._getZoneClass(saveObj.currentZoneName)
 		let room = world._getRoomClass(saveObj.currentZoneName, saveObj.currentRoomName)
 		this._setPosition(zone, room)
+		saveObj.playerInventory.forEach(item => {
+			console.log("loading item", item)
+			//world._addItems(Garden, Garden.Rooms.GardenPath, [Garden.Items.MapleSeed])
+			// var item = world._takeItem(commandData[0], player._getPosition())
+			// player._giveItem(item)
+			
+		})
 
 	}
 
@@ -46,7 +53,7 @@ export class Player {
 		let saveObj = {
 			currentZoneName: this.currentZoneName,
 			currentRoomName: this.currentRoomName,
-			playerInventory: this.playerInventory,
+			playerInventory: this.playerInventory.map(item => item._save()),
 		}
 		localStorage.setItem('text-adventure-save', JSON.stringify(saveObj))
 	}

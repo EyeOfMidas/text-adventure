@@ -290,7 +290,7 @@ class LibraryMainFloor extends RoomCore {
 
 class Pearl extends ItemCore {
 	constructor() {
-		super()
+		super(OldHouse, Pearl)
 		super._setKeys("pearl", "bead")
 		this.viewed = false
 	}
