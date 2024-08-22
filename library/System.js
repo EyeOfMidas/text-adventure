@@ -191,8 +191,15 @@ export class System {
 			this._println("If you want to see a room, type <strong>look</strong>. You can examine items by typing <strong>look [item]</strong>.")
 			this._println("You can travel around by typing directions such as <strong>north</strong> or <strong>s</strong> (for south).")
 			this._println(
-				"Most other actions can be done if they're in context. You can <strong>take</strong> and <strong>drop</strong> items,",
-				"and sometimes do unique things, such as <strong>water flower</strong> or <strong>waltz</strong> based on what you have or where you are."
+				"Some items are movable. You can <strong>take</strong> and <strong>drop</strong> items in the current room or in your inventory.",
+				"To see which items you are currently holding, type <strong>inventory</strong> or <strong>i</strong>."
+			)
+			this._println(
+				"Most other actions can be done if they're in context, and sometimes you are able to do unique things",
+				"such as <strong>water flower</strong> or <strong>waltz</strong> based on what you have or where you are."
+			)
+			this._println(
+				"Finally, you can turn on some game settings like hintmode by typing <strong>settings hintmode true</strong>, or <strong>false</strong> to turn it off."
 			)
 			this._println("")
 			this._println(

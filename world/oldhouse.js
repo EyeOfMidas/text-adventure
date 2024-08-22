@@ -30,7 +30,13 @@ class EntryHall extends RoomCore {
 			system._println("")
 			return true
 		}
-		if (["stained", "glass", "window"].includes(commandData[0])) {
+		if (["door"].includes(commandData[0])) {
+			system._println("The door is made of a very solid, dark oak.",
+				"The bronze door handle is tarnished, but worn to a bright sheen where many hands have grasped it over the years.")
+			system._println("")
+			return true
+		}
+		if (["stained", "glass", "window", "windows"].includes(commandData[0])) {
 			system._println("Light streaming in through the three colored glass windows depicts three flowers; ",
 			"a ruby and emerald rose, an amethyst and obsidian pansy and a quartz and topaz daisy.")
 			system._println("")
@@ -120,7 +126,13 @@ class DarkenedHallway extends RoomCore {
 	}
 
 	look(commandData) {
-		if (["drapes", "curtains"].includes(commandData[0])) {
+		if (["rug", "carpet"].includes(commandData[0])) {
+			system._println("The rug has an elaborate turkish pattern that is almost entirely faded out.",
+			"A few threadbare patches barely hold together as a pale path down the center stretches north and south down the hallway.")
+			system._println("")
+			return true
+		}
+		if (["drapes", "curtains", "window", "windows"].includes(commandData[0])) {
 			system._println("The heavy felt drapes block most of the cheery yellow sunlight creeping around the edges.",
 			"A gray layer of dust makes the rich green fabric a dingy shade.")
 			system._println("")
