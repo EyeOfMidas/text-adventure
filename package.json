@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "vite": "^5.4.2"
+  },
+  "scripts": {
+    "start": "vite"
+  },
+  "name": "text-adventure",
+  "description": "[Play!](http://eyeofmidas.github.io/text-adventure/index.html)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EyeOfMidas/text-adventure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EyeOfMidas/text-adventure/issues"
+  },
+  "homepage": "https://github.com/EyeOfMidas/text-adventure#readme"
+}

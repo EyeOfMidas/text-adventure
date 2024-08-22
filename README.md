@@ -2,7 +2,7 @@
 
 [Play!](http://eyeofmidas.github.io/text-adventure/index.html)
 
-If you're developing locally, I've included a simplistic nodejs webserver to host the files. You should be able to run `./server.js` and it will serve up this project as http://localhost:3000 and open it in your default browser.
+If you're developing locally, I've set up the project to run a vite server. On first run, you should `npm install` to get vite and then `npm start` to start the server. It will serve up this project as http://localhost:5173 and open it in your default browser.
 
 ## Controls
 The basic commands you can input to play the text-adventure example are:
