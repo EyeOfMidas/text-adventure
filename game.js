@@ -3,5 +3,5 @@ import OldHouse from "./world/oldhouse.js"
 
 document.addEventListener("DOMContentLoaded", () => {
     system._init()
-    player._setPosition(OldHouse, OldHouse.Rooms.EntryHall)
+    player._load({currentZoneName: OldHouse.name, currentRoomName: OldHouse.Rooms.EntryHall.name, playerInventory: []})
 })

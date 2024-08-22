@@ -1,20 +1,33 @@
 export class World {
 	constructor() {
+		this.zoneClasses = {}
+		this.roomClasses = {}
 		this.roomObjs = {}
 		this.items = {}
 	}
 
 	_addZone(zone, zoneData) {
+		this.zoneClasses[zone.name] = zone
 		this.roomObjs[zone.name] = []
+		this.roomClasses[zone.name] = []
 		this.items[zone.name] = []
 		zoneData.forEach((roomClass) => {
+			this.roomClasses[zone.name][roomClass.name] = roomClass
 			this.roomObjs[zone.name][roomClass.name] = new roomClass()
 			this.items[zone.name][roomClass.name] = []
 		})
 	}
 
+	_getZoneClass(zoneName) {
+		return this.zoneClasses[zoneName]
+	}
+
 	_getRoom(zoneName, roomName) {
 		return this.roomObjs[zoneName][roomName]
+	}
+
+	_getRoomClass(zoneName, roomName) {
+		return this.roomClasses[zoneName][roomName]
 	}
 
 	_addItems(zone, room, roomItems) {
