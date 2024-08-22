@@ -33,8 +33,9 @@ export class Player {
 		system._println("")
 	}
 
-	_load(defaultSaveObj) {
-		let saveObj = defaultSaveObj
+	_load(defaultZone, defaultRoom, defaultInventory) {
+		
+		let saveObj = JSON.parse(localStorage.getItem('text-adventure-save')) ?? {currentZoneName: defaultZone.name, currentRoomName: defaultRoom.name, playerInventory: defaultInventory}
 		let zone = world._getZoneClass(saveObj.currentZoneName)
 		let room = world._getRoomClass(saveObj.currentZoneName, saveObj.currentRoomName)
 		this._setPosition(zone, room)
