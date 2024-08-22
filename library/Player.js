@@ -9,8 +9,8 @@ export class Player {
 
 	_getPosition() {
 		return {
-			zone: this.currentZone,
-			room: this.currentRoom,
+			zoneName: this.currentZone.name,
+			roomName: this.currentRoom.name,
 		}
 	}
 
@@ -25,7 +25,7 @@ export class Player {
 		this.currentZone = zone
 		this.currentRoom = room
 		world._getRoom(zone.name, room.name)._enter()
-		var items = world._getItems(zone, room)
+		var items = world._getItems(zone.name, room.name)
 		for (var i = 0; i < items.length; i++) {
 			items[i].look([])
 		}

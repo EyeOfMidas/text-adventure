@@ -23,12 +23,12 @@ export class World {
 		})
 	}
 
-	_getItems(zone, room) {
-		return this.items[zone.name][room.name]
+	_getItems(zoneName, roomName) {
+		return this.items[zoneName][roomName]
 	}
 
 	_takeItem(itemKey, pos) {
-		let roomItems = this._getItems(pos.zone, pos.room)
+		let roomItems = this._getItems(pos.zoneName, pos.roomName)
 		for (let i = 0; i < roomItems.length; i++) {
 			if (roomItems[i].keys.includes(itemKey)) {
 				let item = roomItems.splice(i, 1)
@@ -38,11 +38,11 @@ export class World {
 		return null
 	}
 	_giveItem(item, pos) {
-		this._getItems(pos.zone, pos.room).push(item)
+		this._getItems(pos.zoneName, pos.roomName).push(item)
 	}
 
 	_getItemsByKey(commandData, pos) {
-		return this._getItems(pos.zone, pos.room).filter((item) =>
+		return this._getItems(pos.zoneName, pos.roomName).filter((item) =>
 			item.keys.includes(commandData[0])
 		)
 	}

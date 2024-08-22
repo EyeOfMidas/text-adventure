@@ -57,7 +57,7 @@ export class System {
 		let command = commandData.splice(0, 1)
 		command = command[0]
 		let playerPos = player._getPosition()
-		let room = world._getRoom(playerPos.zone.name, playerPos.room.name)
+		let room = world._getRoom(playerPos.zoneName, playerPos.roomName)
 
 		if (!room._actions(command, commandData)) {
 			if (!this._handleRoomItems(playerPos, command, commandData)) {
@@ -73,7 +73,7 @@ export class System {
 	}
 
 	_handleRoomItems(playerPos, command, commandData) {
-		let roomItems = world._getItems(playerPos.zone, playerPos.room)
+		let roomItems = world._getItems(playerPos.zoneName, playerPos.roomName)
 		for (let i = 0; i < roomItems.length; i++) {
 			if (roomItems[i]._actions(command, commandData)) {
 				return true
@@ -84,7 +84,7 @@ export class System {
 
 	_printRoomItems() {
 		let playerPos = player._getPosition()
-		let roomItems = world._getItems(playerPos.zone, playerPos.room)
+		let roomItems = world._getItems(playerPos.zoneName, playerPos.roomName)
 		roomItems.forEach((item) => {
 			item.look()
 		})
@@ -264,22 +264,22 @@ export class System {
 			case "room":
 				this._log(
 					"room data:",
-					world._getRoom(playerPos.zone.name, playerPos.room.name)
+					world._getRoom(playerPos.zoneName, playerPos.roomName)
 				)
 				this._log(
 					"room items:",
-					world._getItems(playerPos.zone, playerPos.room)
+					world._getItems(playerPos.zoneName, playerPos.roomName)
 				)
 				break
 			default:
 				this._log("player inventory:", playerInventory)
 				this._log(
 					"room data:",
-					world._getRoom(playerPos.zone.name, playerPos.room.name)
+					world._getRoom(playerPos.zoneName, playerPos.roomName)
 				)
 				this._log(
 					"room items:",
-					world._getItems(playerPos.zone, playerPos.room)
+					world._getItems(playerPos.zoneName, playerPos.roomName)
 				)
 				break
 		}
