@@ -367,5 +367,5 @@ export default class OldHouse {
 	}
 }
 
-world._addZone(OldHouse, Object.values(OldHouse.Rooms))
-world._addItems(OldHouse, OldHouse.Rooms.GrandBallroom, [OldHouse.Items.Pearl])
+world._addZone(OldHouse)
+world._spawnItems(OldHouse, OldHouse.Rooms.GrandBallroom, [OldHouse.Items.Pearl])

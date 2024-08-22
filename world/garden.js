@@ -257,8 +257,8 @@ export default class Garden {
 	static Items = {Pansy, WateringCan, MapleSeed}
 }
 
-world._addZone(Garden, Object.values(Garden.Rooms))
-world._addItems(Garden, Garden.Rooms.Patio, [Garden.Items.Pansy])
-world._addItems(Garden, Garden.Rooms.Shed, [Garden.Items.WateringCan])
-world._addItems(Garden, Garden.Rooms.GardenPath, [Garden.Items.MapleSeed])
+world._addZone(Garden)
+world._spawnItems(Garden, Garden.Rooms.Patio, [Garden.Items.Pansy])
+world._spawnItems(Garden, Garden.Rooms.Shed, [Garden.Items.WateringCan])
+world._spawnItems(Garden, Garden.Rooms.GardenPath, [Garden.Items.MapleSeed])
 

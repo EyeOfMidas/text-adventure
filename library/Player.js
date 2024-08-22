@@ -38,15 +38,14 @@ export class Player {
 		let saveObj = JSON.parse(localStorage.getItem('text-adventure-save')) ?? {currentZoneName: defaultZone.name, currentRoomName: defaultRoom.name, playerInventory: defaultInventory}
 		let zone = world._getZoneClass(saveObj.currentZoneName)
 		let room = world._getRoomClass(saveObj.currentZoneName, saveObj.currentRoomName)
-		this._setPosition(zone, room)
+		
 		saveObj.playerInventory.forEach(item => {
-			console.log("loading item", item)
-			//world._addItems(Garden, Garden.Rooms.GardenPath, [Garden.Items.MapleSeed])
-			// var item = world._takeItem(commandData[0], player._getPosition())
-			// player._giveItem(item)
-			
+			let itemTemp = new (world._getItemClass(item.zone, item.name))()
+			let takenItem = world._takeItem(itemTemp.keys[0], {zoneName: item.origin.zone, roomName: item.origin.room})
+			takenItem._load(item)
+			player._giveItem(takenItem)
 		})
-
+		this._setPosition(zone, room)
 	}
 
 	_save() {
