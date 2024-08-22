@@ -2,28 +2,28 @@ import { system, world } from "./Core.js"
 
 export class Player {
 	constructor() {
-		this.currentZone = null
-		this.currentRoom = null
+		this.currentZoneName = null
+		this.currentRoomName = null
 		this.playerInventory = []
 	}
 
 	_getPosition() {
 		return {
-			zoneName: this.currentZone.name,
-			roomName: this.currentRoom.name,
+			zoneName: this.currentZoneName,
+			roomName: this.currentRoomName,
 		}
 	}
 
 	_setPosition(zone, room) {
-		if(this.currentRoom) {
-			let currentRoom = world._getRoom(this.currentZone.name, this.currentRoom.name)
+		if(this.currentRoomName) {
+			let currentRoom = world._getRoom(this.currentZoneName, this.currentRoomName)
 			if(typeof currentRoom.leave == "function") {
 				currentRoom.leave()
 			}
 		}
 		
-		this.currentZone = zone
-		this.currentRoom = room
+		this.currentZoneName = zone.name
+		this.currentRoomName = room.name
 		world._getRoom(zone.name, room.name)._enter()
 		var items = world._getItems(zone.name, room.name)
 		for (var i = 0; i < items.length; i++) {
