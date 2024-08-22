@@ -308,6 +308,7 @@ class Pearl extends ItemCore {
 			system._println("It is a shiny, opalescent pearl.")
 			system._println("")
 			this.viewed = true
+			player._save()
 			return true
 		}
 		
@@ -351,6 +352,17 @@ class Pearl extends ItemCore {
 			return true
 		}
 		return false
+	}
+
+	_save() {
+		let saveData = super._save()
+		saveData.viewed = this.viewed
+		return saveData
+	}
+
+	_load(itemSave) {
+		super._load(itemSave)
+		this.viewed = itemSave.viewed
 	}
 }
 export default class OldHouse {

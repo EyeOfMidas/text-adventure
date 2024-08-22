@@ -58,8 +58,8 @@ export default class ItemCore {
 		return {name: this.classType.name, zone: this.zoneClassType.name, origin: {zone: this.originZone, room: this.originRoom}}
 	}
 
-	_load() {
-		return null
+	_load(itemSave) {
+		return
 	}
 
 	held() {

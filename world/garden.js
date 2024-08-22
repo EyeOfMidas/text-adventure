@@ -206,6 +206,17 @@ class Pansy extends ItemCore {
 		
 		return false
 	}
+
+	_save() {
+		let saveData = super._save()
+		saveData.isRefreshed = this.isRefreshed
+		return saveData
+	}
+
+	_load(itemSave) {
+		super._load(itemSave)
+		this.isRefreshed = itemSave.isRefreshed
+	}
 }
 
 class MapleSeed extends ItemCore {
@@ -242,6 +253,7 @@ export class WateringCan extends ItemCore {
 			if(targetItem.length == 1) {
 				system._println("You splash the few remaining droplets across the flower, reviving it slightly.")
 				targetItem[0].isRefreshed = true
+				player._save()
 			} else {
 				system._println(`This probably doesn't need to be watered.`)
 				
