@@ -1,9 +1,13 @@
+html, body {
+	margin: 0;
+	padding: 0;
+    overflow: hidden;
+}
 body {
 	font-family: "Lucida Console", Monaco, monospace;
 	font-size: 14px;
 	color: lightgray;
 	background-color: black;
-
 }
 
 input {
@@ -19,19 +23,25 @@ strong {
 }
 
 #output {
-	max-height: calc(100vh - 50px);
-	overflow: auto;
 	overflow-x: hidden;
+	overflow-y: scroll;
+	max-height: calc(100vh - 68px);
+	padding: 4px;
+	margin-bottom: 20px;
 }
 
-.input-container {
-	height: 30px;
+.output-container {
+	margin: 4px;
+	padding: 4px;
 }
 
 .input-container {
 	height: 20px;
 	text-align: left;
 	padding: 4px;
+	max-width: 100%;
+	margin: 0;
+	margin-bottom: 4px;
 }
 
 .input-container input[type="text"] {

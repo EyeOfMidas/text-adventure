@@ -5,3 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     system._init()
     player._load(OldHouse, OldHouse.Rooms.EntryHall, [])
 })
+
+window.addEventListener("resize", () => {
+    system._resize()
+})

@@ -14,6 +14,11 @@ export class System {
 	_init() {
 		this._form.addEventListener("submit", () => { this._parseInput() }, false)
 		this.clear()
+		this._resize()
+	}
+
+	_resize() {
+		this._scrollToEnd()
 	}
 
 	_read() {
@@ -30,7 +35,7 @@ export class System {
 			message = "&nbsp;"
 		}
 		this._print(`<div class="line">${message}</div>\n`)
-		this._outputDiv.scrollTop = this._outputDiv.scrollHeight
+		this._scrollToEnd()
 	}
 
 	_log() {
@@ -49,7 +54,13 @@ export class System {
 	_clearInput() {
 		this._inputField.value = ""
 		this._inputField.focus()
+		this._scrollToEnd()
+	}
+
+	_scrollToEnd() {
 		this._outputDiv.scrollTop = this._outputDiv.scrollHeight
+		window.scrollTo(0, document.body.scrollHeight)
+		history.scrollRestoration = "manual"
 	}
 
 	_parseInput() {
@@ -181,6 +192,12 @@ export class System {
 			return true
 		}
 		this._println(`close what?`)
+		this._println("")
+		return true
+	}
+
+	quit(commandData) {
+		this._println(`You're free to leave. Your game is saved automatically. Just close the page, I'll be here when you return.`)
 		this._println("")
 		return true
 	}
