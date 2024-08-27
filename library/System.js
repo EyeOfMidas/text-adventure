@@ -22,7 +22,7 @@ export class System {
 	}
 
 	_read() {
-		return this._inputField.value
+		return this._inputField.value.toLowerCase()
 	}
 
 	_print() {
