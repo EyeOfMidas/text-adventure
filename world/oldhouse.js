@@ -23,6 +23,15 @@ class EntryHall extends RoomCore {
 		return true
 	}
 
+	smell(commandData) {
+		if (["rug", "carpet"].includes(commandData[0])) {
+			system._println("A faint, musty smell emanates from the worn rug on the floor.")
+			system._println("")
+			return true
+		}
+		return super.smell(commandData)
+	}
+
 	look(commandData) {
 		if (["rug", "carpet"].includes(commandData[0])) {
 			system._println("The rug has an elaborate turkish pattern that is almost entirely faded out.",
@@ -30,6 +39,12 @@ class EntryHall extends RoomCore {
 			system._println("")
 			return true
 		}
+		if (["handle"].includes(commandData[0])) {
+			system._println("The bronze door handle is cast with many swirling filigrees of flowers and vines.")
+			system._println("")
+			return true
+		}
+
 		if (["door"].includes(commandData[0])) {
 			system._println("The door is made of a very solid, dark oak.",
 				"The bronze door handle is tarnished, but worn to a bright sheen where many hands have grasped it over the years.")
@@ -42,7 +57,30 @@ class EntryHall extends RoomCore {
 			system._println("")
 			return true
 		}
+
+		if (["flowers"].includes(commandData[0])) {
+			system._println("Light streaming in through the three colored glass windows depicts three flowers; ",
+			"a ruby and emerald rose, an amethyst and obsidian pansy and a quartz and topaz daisy.")
+			system._println("")
+			return true
+		}
+
+		if (["ceiling"].includes(commandData[0])) {
+			system._println("Large, dark wood beams span the distant ceiling, reaching an apex in the center.")
+			system._println("")
+			return true
+		}
 		return super.look(commandData)
+	}
+
+	open(commandData) {
+		if (["door"].includes(commandData[0])) {
+			system._println("You rattle the bronze door handle, but the solid oak door does not budge.")
+			system._println("")
+			return true
+		}
+		
+		return super.open(commandData)
 	}
 }
 
@@ -80,6 +118,30 @@ class SunnyHallway extends RoomCore {
 		system._println("")
 		player._setPosition(Garden, Garden.Rooms.Patio)
 		return true
+	}
+
+	look(commandData) {
+		if (["oak", "door"].includes(commandData[0])) {
+			system._println("The door is made of a very solid, dark oak. A wrought-iron set of bars span the small window in it.")
+			system._println("")
+			return true
+		}
+		return super.look(commandData)
+	}
+
+	smell(commandData) {
+		system._println("The dust makes you sneeze.")
+		system._println("AAAAHH-CHOOO!")
+		system._println("")
+		return true
+	}
+
+	close(commandData) {
+		if (["door"].includes(commandData[0])) {
+			system._println("The door out to the garden is firmly wedged open and won't budge.")
+			system._println("")
+			return true
+		}
 	}
 }
 
@@ -146,6 +208,15 @@ class DarkenedHallway extends RoomCore {
 			return true
 		}
 		return super.look(commandData)
+	}
+
+	smell(commandData) {
+		if (["rug", "carpet"].includes(commandData[0])) {
+			system._println("A faint, musty smell emanates from the worn rug on the floor.")
+			system._println("")
+			return true
+		}
+		return super.smell(commandData)
 	}
 }
 

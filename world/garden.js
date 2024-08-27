@@ -29,6 +29,73 @@ class Patio extends RoomCore {
 		player._setPosition(Garden, Garden.Rooms.GardenPath)
 		return true
 	}
+
+	look(commandData) {
+		if (["bricks", "brick", "patio"].includes(commandData[0])) {
+			system._println("Rich red bricks stagger across the spacious patio, the pale mortar covered with bits of potting soil or growing a fuzzy green moss in places.")
+			system._println("")
+			return true
+		}
+
+		if (["soil", "dirt"].includes(commandData[0])) {
+			system._println("A trail of dark brown loam has been tracked out of the shed doorway and ground into the gaps between bricks over many years of gardening.")
+			system._println("")
+			return true
+		}
+
+		if (["oak", "door"].includes(commandData[0])) {
+			system._println("The door is made of a very solid, dark oak. A wrought-iron set of bars span the small window in it.")
+			system._println("")
+			return true
+		}
+
+		if (["vines", "flowers"].includes(commandData[0])) {
+			system._println("Blue-flowered vines reach out of the soil to entwine every available climbing surface.",
+				"They grasp at the walls of the house and shed, and even cling to the other struggling plants.")
+			system._println("")
+			return true
+		}
+
+		if (["shed"].includes(commandData[0])) {
+			system._println("The small garden shed has seen better days. Even the doorframe lacks a door.",
+				"The wooden siding is growing various lichen and vines; mottled with the stains of time."
+			)
+			system._println("")
+			return true
+		}
+
+		if (["sun", "sunlight"].includes(commandData[0])) {
+			system._println("Despite the shadow of the house to the west, the sunlight beats down mercilessly on the garden patio.",
+				"It is uncomfortably warm standing in the searing heat of the sun."
+			)
+			system._println("")
+			return true
+		}
+
+		if (["house"].includes(commandData[0])) {
+			system._println("The towering, dark form of the house looms to the west. Vines growing small blue flowers tentatively crawl up it's sides but don't make it very far before turning back.",
+				"A sturdy oak door is propped open, letting in some sunlight to the otherwise dark interior.")
+			system._println("")
+			return true
+		}
+
+		return super.look(commandData)
+	}
+
+	close(commandData) {
+		if (["door"].includes(commandData[0])) {
+			system._println("The door to the house is firmly wedged open and won't budge.")
+			system._println("")
+			return true
+		}
+	}
+
+	smell(commandData) {
+		system._println("Vines and flowers give this place an intoxicatingly alive smell.",
+			"The scent of fresh dirt emanates from the garden shed to the south.")
+		system._println("")
+		return true
+	}
 }
 
 class GardenPath extends RoomCore {

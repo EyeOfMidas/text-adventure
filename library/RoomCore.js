@@ -48,6 +48,21 @@ export default class RoomCore {
 		return false
 	}
 
+	smell(commandData) {
+		if (commandData.length > 0) {
+			system._println(`I can't smell '${commandData[0]}'`)
+			system._println("")
+			return true
+		}
+		system._println(`smell what?`)
+		system._println("")
+		return true
+	}
+
+	open(commandData) {
+		return false
+	}
+
 	north() {
 		system._println("I can't go north.")
 		system._println("")
