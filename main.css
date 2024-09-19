@@ -75,3 +75,10 @@ strong {
 .line {
 	display: block;
 }
+
+.script {
+	font-family: 'Charm', cursive, sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+    font-style: normal;
+}

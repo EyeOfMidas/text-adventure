@@ -436,6 +436,36 @@ class Pearl extends ItemCore {
 		this.viewed = itemSave.viewed
 	}
 }
+
+class Note extends ItemCore {
+	constructor() {
+		super(OldHouse, Note)
+		super._setKeys("note", "paper")
+
+		super._setLookText(`A note of plain white paper sits on the floor.`)
+		super._setLookAtText(`<div class="script">Mr. Justin Ravencrest,</div>`,
+			`<div class="script">Your presence is requested at the Elmhurst Manor before</div>`,
+			`<div class="script">the 12th of June. Our attorneys will have the deed drawn</div>`,
+			`<div class="script">up with the standard terms, provided you are able to</div>`,
+			`<div class="script">discover the items hidden within the Manor's grounds.</div>`,
+			`<br />`,
+			`<div class="script">Cordially,</div>`,
+			`<div class="script">Vanessa Blackspire</div>`
+		)
+		super._setTakeText("You take the note.")
+		super._setHeldText("a note")
+		super._setDropText("The note flutters to the floor.")
+	}
+
+	read(commandData) {
+		if (commandData.length > 0 && this.keys.includes(commandData[0])) {
+			return this.look(commandData)
+		}
+		
+		return false
+	}
+}
+
 export default class OldHouse {
 	static Rooms = {
 		EntryHall,
@@ -447,8 +477,10 @@ export default class OldHouse {
 	}
 	static Items = {
 		Pearl,
+		Note,
 	}
 }
 
 world._addZone(OldHouse)
 world._spawnItems(OldHouse, OldHouse.Rooms.GrandBallroom, [OldHouse.Items.Pearl])
+world._spawnItems(OldHouse, OldHouse.Rooms.EntryHall, [OldHouse.Items.Note])

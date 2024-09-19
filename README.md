@@ -82,8 +82,8 @@ export default class Garden {
 	static Items = {Pansy, WateringCan}
 }
 
-world._addZone(Garden, Object.values(Garden.Rooms))
-world._addItems(Garden, Garden.Rooms.Patio, [Garden.Items.Pansy, Garden.Items.WateringCan])
+world._addZone(Garden)
+world._spawnItems(Garden, Garden.Rooms.Patio, [Garden.Items.Pansy])
 ```
 
 Linking between rooms is done as a simple position update. If a user were to be in the `SunnyHallway` and were to type `east`, the `east()` function would be called on the `SunnyHallway` class, which will print out some text to the user, and then set the player's position to the `Garden` zone and the `Patio` room.
@@ -124,6 +124,6 @@ If you want the player to start in a different location when loading up, just ad
 ```javascript
 document.addEventListener("DOMContentLoaded", () => {
     system._init()
-    player._setPosition(OldHouse, OldHouse.Rooms.EntryHall)
+    player._setPosition(OldHouse, OldHouse.Rooms.EntryHall, [])
 })
 ```
