@@ -1,6 +1,6 @@
 {
-  "dependencies": {
-    "vite": "^5.4.6"
+  "devDependencies": {
+    "vite": "^6.2.5"
   },
   "scripts": {
     "start": "vite"
@@ -9,7 +9,6 @@
   "description": "[Play!](http://eyeofmidas.github.io/text-adventure/index.html)",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EyeOfMidas/text-adventure.git"
