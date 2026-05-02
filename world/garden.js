@@ -103,7 +103,7 @@ class GardenPath extends RoomCore {
 		super()
 		super._setTitle("A sunny garden path")
 		super._setDescription("Deep green moss fills the crumbling mortar gaps in the brick path, which gently curve around a well-kept japanese maple.",
-		"The maple leaves are a bright red, with several clusters of twin propellered seeds amongst the branches.")
+			"The maple leaves are a bright red, with several clusters of twin propellered seeds amongst the branches.")
 		super._setExits("The dark old house looms to the <strong>west</strong>. The brick path meanders towards the <strong>east</strong>.")
 	}
 
@@ -160,9 +160,9 @@ export class Pond extends RoomCore {
 		super()
 		super._setTitle("The garden pond")
 		super._setDescription("Large, misshapen rocks border a round pond with a large marble oyster on the far side spilling water into the pond below.",
-		"Waterlillies bob happily on the surface of the burbling water, and the algae-covered stones are hugged by creeping jenny plants.")
+			"Waterlillies bob happily on the surface of the burbling water, and the algae-covered stones are hugged by creeping jenny plants.")
 		super._setExits("The brick pathway <strong>west</strong> heads towards a maple tree.",
-		"A cheerful flower garden is to the <strong>east</strong> and the heady smell of roses drifts from the path to the <strong>south</strong>.")
+			"A cheerful flower garden is to the <strong>east</strong> and the heady smell of roses drifts from the path to the <strong>south</strong>.")
 	}
 
 	west() {
@@ -191,9 +191,10 @@ export class RoseGarden extends RoomCore {
 	constructor() {
 		super()
 		super._setTitle("The Rose Garden")
-		super._setDescription("The brick path weaves south, lined on both side with massive rose bushes, covered in blooms as big as an open hand.","The fragrance is as intoxicating as the overhead summer sun is scorching hot.")
+		super._setDescription("The brick path weaves south, lined on both side with massive rose bushes, covered in blooms as big as an open hand.",
+			"The fragrance is as intoxicating as the overhead summer sun is scorching hot.")
 		super._setExits("The cheerful trickle of water comes from the <strong>north</strong>.",
-		"A garden path in mottled sunlight can be seen to the <strong>south</strong>.")
+			"A garden path in mottled sunlight can be seen to the <strong>south</strong>.")
 	}
 
 	north() {
@@ -208,7 +209,8 @@ export class FlowerGarden extends RoomCore {
 	constructor() {
 		super()
 		super._setTitle("A wildflower garden")
-		super._setDescription("flower beds")
+		super._setDescription("A chaotic mix of lanky, weed-like native flowers fill the wood-framed planters to overflowing.",
+			"The sunny warmth heats the stems, leaves and rich, dark soil, resulting in a rich, earthy smell.")
 		super._setExits("The cheerful trickle of water comes from the <strong>west</strong>.")
 	}
 
@@ -270,7 +272,7 @@ class Pansy extends ItemCore {
 			system._println("")
 			return true
 		}
-		
+
 		return false
 	}
 
@@ -310,20 +312,20 @@ export class WateringCan extends ItemCore {
 	}
 
 	water(commandData) {
-		if(player._hasItem(this)) {
-			if(!commandData || commandData.length == 0) {
+		if (player._hasItem(this)) {
+			if (!commandData || commandData.length == 0) {
 				system._println("water what?")
 				system._println("")
 				return true
 			}
 			let targetItem = system._getItemsByKey(commandData).filter((item) => item instanceof Garden.Items.Pansy)
-			if(targetItem.length == 1) {
+			if (targetItem.length == 1) {
 				system._println("You splash the few remaining droplets across the flower, reviving it slightly.")
 				targetItem[0].isRefreshed = true
 				player._save()
 			} else {
 				system._println(`This probably doesn't need to be watered.`)
-				
+
 			}
 			system._println("")
 			return true
@@ -332,8 +334,8 @@ export class WateringCan extends ItemCore {
 }
 
 export default class Garden {
-	static Rooms = {Patio, Shed, GardenPath, Pond, RoseGarden, FlowerGarden}
-	static Items = {Pansy, WateringCan, MapleSeed}
+	static Rooms = { Patio, Shed, GardenPath, Pond, RoseGarden, FlowerGarden }
+	static Items = { Pansy, WateringCan, MapleSeed }
 }
 
 world._addZone(Garden)
