@@ -69,7 +69,7 @@ export class System {
 		command = command[0]
 		let playerPos = player._getPosition()
 		let room = world._getRoom(playerPos.zoneName, playerPos.roomName)
-
+		system._println(command, commandData.join(" "))
 		if (!room._actions(command, commandData)) {
 			if (!this._handleRoomItems(playerPos, command, commandData)) {
 				if (!this._handleInventoryItems(command, commandData)) {
@@ -131,8 +131,13 @@ export class System {
 
 	look(commandData) {
 		if (commandData.length > 0) {
-			this._println(`I don't see '${commandData[0]}'.`)
-			this._println("")
+			if(['at'].includes(commandData[0])) {
+				this._println(`You don't need to 'look at'. Instead try typing 'look ${commandData[1]}'`)
+				this._println("")
+			} else {
+				this._println(`I don't see '${commandData[0]}'.`)
+				this._println("")
+			}
 			return true
 		}
 		return false
@@ -198,6 +203,14 @@ export class System {
 
 	quit(commandData) {
 		this._println(`You're free to leave. Your game is saved automatically. Just close the page, I'll be here when you return.`)
+		this._println("")
+		return true
+	}
+
+	exit = this.quit
+
+	save(commandData) {
+		this._println(`Your game is saved automatically.`)
 		this._println("")
 		return true
 	}

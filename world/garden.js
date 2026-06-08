@@ -5,7 +5,7 @@ class Patio extends RoomCore {
 	constructor() {
 		super()
 		super._setTitle("A lush outdoor garden")
-		super._setDescription("The warmth of the sun falls on the brick patio, radiating heat in the walled garden. The smell of vines and flowers permeate the air.")
+		super._setDescription(`The warmth of the sun falls on the brick patio, radiating heat in the walled garden. The smell of <span class="hint">vines and flowers</span> permeate the air.`)
 		super._setExits("The rickety garden shed is to the <strong>south</strong>. An old oak door opens into the house to the <strong>west</strong>. The bricks narrow into a path leading deeper <strong>east</strong> into the garden.")
 	}
 
@@ -73,7 +73,7 @@ class Patio extends RoomCore {
 		}
 
 		if (["house"].includes(commandData[0])) {
-			system._println("The towering, dark form of the house looms to the west. Vines growing small blue flowers tentatively crawl up it's sides but don't make it very far before turning back.",
+			system._println(`The towering, dark form of the house looms to the west. <span class="hint">Vines</span> growing small blue flowers tentatively crawl up it's sides but don't make it very far before turning back.`,
 				"A sturdy oak door is propped open, letting in some sunlight to the otherwise dark interior.")
 			system._println("")
 			return true
@@ -203,6 +203,13 @@ export class RoseGarden extends RoomCore {
 		player._setPosition(Garden, Pond)
 		return true
 	}
+
+	south() {
+		system._println("You walk south.")
+		system._println("")
+		player._setPosition(Garden, WidowsWalk)
+		return true
+	}
 }
 
 export class FlowerGarden extends RoomCore {
@@ -210,8 +217,10 @@ export class FlowerGarden extends RoomCore {
 		super()
 		super._setTitle("A wildflower garden")
 		super._setDescription("A chaotic mix of lanky, weed-like native flowers fill the wood-framed planters to overflowing.",
-			"The sunny warmth heats the stems, leaves and rich, dark soil, resulting in a rich, earthy smell.")
-		super._setExits("The cheerful trickle of water comes from the <strong>west</strong>.")
+			"The sunny warmth heats the stems, leaves and rich, dark soil, resulting in a rich, earthy smell.",
+		"A gentle breeze rustles the leaves of a lone tree. Warm sunshine and an overwhelming sense of calm make this a splended spot for a nap.")
+		super._setExits("A burble of water comes from the <strong>west</strong>.")
+
 	}
 
 	west() {
@@ -238,10 +247,57 @@ export class FlowerGarden extends RoomCore {
 				"A bird chirps merrily in a nearby tree.",
 			].shuffle()[0]
 			system._println(ambianceMessage)
-		}, 60000)
+		}, 30000)
+	}
+
+	nap(commandData) {
+		system._println("You lay down amongst the flowers, drowsily breathing in the vibrant smells of the earth and nodding off to the humming of the honeybees.")
+		system._println("")
+		return true
 	}
 }
 
+export class WidowsWalk extends RoomCore {
+	constructor() {
+		super()
+		super._setTitle("Widows Walk")
+		super._setDescription(`A narrow stone pathway weaving through the trees. Moss-covered stone pedestals dot the forest next to the path. An empty <span class="hint">vase</span> sits on one of the pedestals.`)
+		super._setExits("The path weaves <strong>north</strong> out of the trees into sunlight.")
+	}
+
+	north() {
+		system._println("You walk north.")
+		system._println("")
+		player._setPosition(Garden, RoseGarden)
+		return true
+	}
+
+	look(commandData) {
+		if (["vase"].includes(commandData[0])) {
+			system._println("A delicate ceramic vase, it's pale glaze covered in crazing, the cracks brown with dirt and dried moss.",
+				`Three small images are stamped on the side of the vase; a <span class="hint">rose</span>, a <span class="hint">daisy</span> and a <span class="hint">pansy</span>.`)
+			system._println("")
+			return true
+		}
+		return super.look(commandData)
+	}
+
+	put(commandData) {
+		if (!commandData || commandData.length <= 0) {
+			system._println("What should I put in the vase?")
+			system._println("")
+			return true
+		}
+	}
+	plant = this.put
+	arrange = this.put
+	place = this.put
+}
+
+
+/***********************
+ *         Items       *
+ ***********************/
 class Pansy extends ItemCore {
 	constructor() {
 		super(Garden, Pansy)
@@ -300,6 +356,30 @@ class MapleSeed extends ItemCore {
 	}
 }
 
+class Daisy extends ItemCore {
+	constructor() {
+		super(Garden, Daisy)
+		super._setKeys("daisy", "flower")
+		super._setLookText(`A bright, cheerful <span class="hint">daisy</span> lies on the ground.`)
+		super._setLookAtText("A pristine white-petaled daisy with a sunny yellow center.")
+		super._setTakeText("You carefully put the flower in your pocket.")
+		super._setHeldText("a daisy")
+		super._setDropText("The daisy falls from your fingers.")
+	}
+}
+
+class Rose extends ItemCore {
+	constructor() {
+		super(Garden, Rose)
+		super._setKeys("rose", "flower")
+		super._setLookText(`A beautiful <span class="hint">rose</span> lies on the ground.`)
+		super._setLookAtText("The thick, many-petaled rose is a deep, luscious red, with sharp thorns all down it's stem.")
+		super._setTakeText("You carefully put the flower in your pocket.")
+		super._setHeldText("a rose")
+		super._setDropText("The rose plops unceremoniously on the ground.")
+	}
+}
+
 export class WateringCan extends ItemCore {
 	constructor() {
 		super(Garden, WateringCan)
@@ -334,12 +414,14 @@ export class WateringCan extends ItemCore {
 }
 
 export default class Garden {
-	static Rooms = { Patio, Shed, GardenPath, Pond, RoseGarden, FlowerGarden }
-	static Items = { Pansy, WateringCan, MapleSeed }
+	static Rooms = { Patio, Shed, GardenPath, Pond, RoseGarden, FlowerGarden, WidowsWalk }
+	static Items = { Pansy, WateringCan, MapleSeed, Daisy, Rose }
 }
 
 world._addZone(Garden)
 world._spawnItems(Garden, Garden.Rooms.Patio, [Garden.Items.Pansy])
 world._spawnItems(Garden, Garden.Rooms.Shed, [Garden.Items.WateringCan])
 world._spawnItems(Garden, Garden.Rooms.GardenPath, [Garden.Items.MapleSeed])
+world._spawnItems(Garden, Garden.Rooms.FlowerGarden, [Garden.Items.Daisy])
+world._spawnItems(Garden, Garden.Rooms.RoseGarden, [Garden.Items.Rose])
 

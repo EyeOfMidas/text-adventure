@@ -442,7 +442,7 @@ class Note extends ItemCore {
 		super(OldHouse, Note)
 		super._setKeys("note", "paper")
 
-		super._setLookText(`A note of plain white paper sits on the floor.`)
+		super._setLookText(`A <span class="hint">note</span> of plain white paper sits on the floor.`)
 		super._setLookAtText(`<div class="script">Mr. Justin Ravencrest,</div>`,
 			`<div class="script">Your presence is requested at the Elmhurst Manor before</div>`,
 			`<div class="script">the 12th of June. Our attorneys will have the deed drawn</div>`,
